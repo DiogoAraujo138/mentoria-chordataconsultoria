@@ -21,16 +21,20 @@ const CTASection = () => {
             Início em <span className="gradient-text">11 de Maio de 2026</span>
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Turmas limitadas a 8 participantes. Garanta sua vaga e receba um diagnóstico gratuito da sua empresa.
+            Turmas limitadas a 10 participantes. Garanta sua vaga e receba um diagnóstico gratuito da sua empresa.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-            <Button size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
-              Garantir Minha Vaga
-              <ArrowRight className="ml-2 w-5 h-5" />
+            <Button asChild size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
+              <a href="https://wa.me/5551976222707?text=Olá! Tenho interesse na Mentoria em Gestão Clínica e Hospitalar" target="_blank" rel="noopener noreferrer">
+                Garantir Minha Vaga
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
             </Button>
-            <Button variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20">
-              <MessageCircle className="mr-2 w-5 h-5" />
-              Falar no WhatsApp
+            <Button asChild variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20">
+              <a href="https://wa.me/5551976222707?text=Olá! Gostaria de saber mais sobre a Mentoria Chordata" target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="mr-2 w-5 h-5" />
+                Falar no WhatsApp
+              </a>
             </Button>
           </div>
         </div>
