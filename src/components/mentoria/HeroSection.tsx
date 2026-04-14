@@ -1,20 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import chordataLogo from "@/assets/logos/chordata-logo-white.png";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-teal/8 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-brand-blue/6 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-teal/30 to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
+        {/* Logo */}
+        <div className="flex justify-center mb-4">
+          <img src={chordataLogo} alt="Chordata Consultoria" className="h-12 md:h-16 w-auto" />
+        </div>
+
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-muted-foreground">
-          <Sparkles className="w-4 h-4 text-primary" />
-          <span>Novo Produto — Chordata Consultoria</span>
+          <Sparkles className="w-4 h-4 text-brand-teal" />
+          <span>Novo Produto — Mentoria Exclusiva</span>
         </div>
 
         {/* Headline */}
@@ -31,9 +38,12 @@ const HeroSection = () => {
           Decisões baseadas em dados, pessoas e bem-estar.
         </p>
 
+        {/* Gradient divider */}
+        <div className="gradient-divider max-w-xs mx-auto rounded-full" />
+
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-          <Button size="lg" className="text-base px-8 py-6 animate-pulse-glow">
+          <Button size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
             Quero Participar
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
