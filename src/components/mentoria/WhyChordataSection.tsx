@@ -4,7 +4,8 @@ import logoAnalytics from "@/assets/logos/chordata-analytics-new2.png";
 import logoMentall from "@/assets/logos/mentall-new.png";
 import logoJuridicoPet from "@/assets/logos/juridico-pet-new.png";
 import logoVetconnection from "@/assets/logos/vetconnection-new2.png";
-import abhvLogo from "@/assets/logos/abhv-pave.jpg";
+import abhvLogo from "@/assets/logos/abhv-logo.png";
+import vetfamilyLogo from "@/assets/logos/vetfamily-logo.png";
 
 const stats = [
   { icon: Users, value: "+2.000", label: "Pessoas Movimentadas" },
@@ -122,9 +123,14 @@ const WhyChordataSection = () => {
 
         {/* Partner logos */}
         <div data-animate className="opacity-0 text-center">
-          <p className="text-sm text-muted-foreground mb-6 uppercase tracking-wider">Parceiro oficial</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
-            <img src={abhvLogo} alt="PAVE & ABHV" className="h-10 w-auto rounded" />
+          <p className="text-sm text-muted-foreground mb-6 uppercase tracking-wider">Parceiros oficiais</p>
+          <div className="flex flex-wrap justify-center items-center gap-8">
+            <div className="bg-white rounded-xl p-3">
+              <img src={abhvLogo} alt="ABHV" className="h-12 w-auto" />
+            </div>
+            <div className="bg-white rounded-xl p-3">
+              <img src={vetfamilyLogo} alt="VetFamily" className="h-12 w-auto" />
+            </div>
           </div>
         </div>
       </div>
