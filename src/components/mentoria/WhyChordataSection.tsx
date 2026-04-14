@@ -128,7 +128,7 @@ const WhyChordataSection = () => {
             <div className="bg-white rounded-xl p-3">
               <img src={abhvLogo} alt="ABHV" className="h-12 w-auto" />
             </div>
-            <div className="bg-white rounded-xl p-3">
+            <div className="bg-card border border-border rounded-xl p-3">
               <img src={vetfamilyLogo} alt="VetFamily" className="h-12 w-auto" />
             </div>
           </div>
