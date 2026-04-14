@@ -39,11 +39,11 @@ const AudienceSection = () => {
             <div
               key={item.title}
               data-animate
-              className="opacity-0 glass-card p-8 hover:border-primary/40 transition-all duration-300 group"
+              className="opacity-0 glass-card card-glow p-8 group"
               style={{ animationDelay: `${i * 150}ms` }}
             >
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                <item.icon className="w-6 h-6 text-primary" />
+              <div className="w-12 h-12 rounded-lg bg-brand-teal/10 flex items-center justify-center mb-6 group-hover:bg-brand-teal/20 transition-colors">
+                <item.icon className="w-6 h-6 text-brand-teal" />
               </div>
               <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
               <p className="text-muted-foreground leading-relaxed">{item.description}</p>

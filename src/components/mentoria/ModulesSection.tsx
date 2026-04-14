@@ -68,19 +68,19 @@ const ModulesSection = () => {
             <div
               key={mod.number}
               data-animate
-              className={`opacity-0 glass-card p-8 relative overflow-hidden group transition-all duration-300 ${
-                mod.ready ? "hover:border-primary/40" : "opacity-60"
+              className={`opacity-0 glass-card card-glow p-8 relative overflow-hidden group ${
+                !mod.ready ? "opacity-60" : ""
               }`}
               style={{ animationDelay: `${i * 150}ms` }}
             >
               {/* Module number */}
-              <span className="absolute top-6 right-6 text-6xl font-bold text-primary/5 group-hover:text-primary/10 transition-colors">
+              <span className="absolute top-6 right-6 text-6xl font-bold text-brand-teal/5 group-hover:text-brand-teal/10 transition-colors">
                 {mod.number}
               </span>
 
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
-                  <mod.icon className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 rounded-lg bg-brand-teal/10 flex items-center justify-center mb-6">
+                  <mod.icon className="w-6 h-6 text-brand-teal" />
                 </div>
 
                 <h3 className="text-xl font-semibold mb-2">{mod.title}</h3>
@@ -90,7 +90,7 @@ const ModulesSection = () => {
                   <ul className="space-y-2">
                     {mod.topics.map((topic) => (
                       <li key={topic} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-teal mt-1.5 shrink-0" />
                         {topic}
                       </li>
                     ))}

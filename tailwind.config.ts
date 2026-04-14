@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['"Space Grotesk"', 'sans-serif'],
-        body: ['"DM Sans"', 'sans-serif'],
+        heading: ["Montserrat", "sans-serif"],
+        body: ["Inter", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,6 +51,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        brand: {
+          blue: "hsl(var(--brand-blue))",
+          teal: "hsl(var(--brand-teal))",
+          lime: "hsl(var(--brand-lime))",
+          yellow: "hsl(var(--brand-yellow))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -81,8 +87,8 @@ export default {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px 0 hsl(239 84% 67% / 0.3)" },
-          "50%": { boxShadow: "0 0 40px 10px hsl(239 84% 67% / 0.5)" },
+          "0%, 100%": { boxShadow: "0 0 20px 0 hsl(175 100% 31% / 0.3)" },
+          "50%": { boxShadow: "0 0 40px 10px hsl(175 100% 31% / 0.5)" },
         },
       },
       animation: {
