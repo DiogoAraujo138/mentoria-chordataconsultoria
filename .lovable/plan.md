@@ -1,46 +1,57 @@
 
 
-## Landing Page — Mentoria Chordata
+## Atualização da Landing Page — Mentoria Chordata
 
-Uma landing page single-page para apresentar o produto de mentoria da Chordata Consultoria, seguindo a identidade visual do ecossistema (fundo escuro #0a0a1a/#141432, azul como cor primária, tipografia moderna).
+Baseado no material de referência da sua colega, a landing page precisa ser reestruturada com conteúdo atualizado e novas seções.
 
-### Estrutura da Página
+### Mudanças principais
 
-**1. Hero Section**
-- Logo Chordata + badge "Novo Produto"
-- Headline: "Mentoria para Gestores do Mercado Veterinário"
-- Subtítulo com proposta de valor: 4 encontros, aprendizado prático, decisões baseadas em dados
-- CTA principal: "Quero Participar" / "Agendar Conversa"
-- Elemento visual de destaque (ícone/ilustração de mentoria)
+**1. Hero Section — Logo maior + copy de LP**
+- Logo Chordata significativamente maior (de `h-16` para `h-24`/`h-32`)
+- Título atualizado: "Mentoria em Gestão Clínica e Hospitalar"
+- Subtítulo: "Uma experiência imersiva com especialistas em gestão veterinária. Networking, conhecimento prático e ferramentas prontas para transformar sua empresa."
+- Badge: "Transforme sua gestão veterinária"
+- CTA principal: "Garantir Vaga" / "Saiba Mais"
 
-**2. Seção "Para quem é"**
-- Cards com os 3 perfis: Donos de clínicas/hospitais, Gestores/Gerentes, Veterinários empreendedores
-- Cada card com ícone e breve descrição da dor/necessidade
+**2. Nova seção — "O que você vai receber" (6 benefícios)**
+- Networking de Alto Impacto
+- Especialistas em Gestão
+- Descontos no Ecossistema
+- Diagnóstico Gratuito
+- Materiais Facilitadores
+- Treinamentos Gravados
 
-**3. Os 4 Encontros (Módulos)**
-- Layout em grid/timeline com os 4 módulos numerados
-- **Módulo 1 — Gestão Financeira e Dados**: conteúdo já definido (análise de dados, BI, ferramentas, dashboards)
-- **Módulo 2 — Gestão de Pessoas**: liderança, equipes, cultura organizacional em clínicas veterinárias
-- **Módulo 3 — Saúde e Bem-Estar**: saúde mental no ambiente veterinário, prevenção de burnout, equilíbrio (conectado ao MentAll.Vet)
-- **Módulo 4 — Em breve**: placeholder elegante para o 4º tema ainda em definição
-- Cada módulo com lista de tópicos e ícones visuais
+**3. Nova seção — "Estrutura da Mentoria"**
+- 4 Encontros em Grupo
+- 2 Encontros Individuais
+- Turmas de máx. 8 integrantes
+- Diagnóstico Gratuito incluso
 
-**4. Seção "Por que a Chordata?"**
-- Números de impacto (estados atendidos, clientes, anos de atuação)
-- Menção ao ecossistema integrado (Analytics, MentAll.Vet, etc.)
-- Selo parceiro PAVE/ABHV
+**4. Módulos atualizados (todos os 4 definidos)**
+- **Gestão de Pessoas**: turnover, recrutamento, desenvolvimento de equipes
+- **Gestão Comercial**: atendimento, sistemas, treinamento de recepção
+- **Gestão de Dados e Finanças**: BI, análise de dados, dashboards (já existente)
+- **Gestão de Fluxogramas e POPs**: modelos prontos, metodologia, documentação
 
-**5. CTA Final + Contato**
-- Chamada para ação com botão de agendamento
-- Link para WhatsApp ou formulário de interesse
+**5. Nova seção — "Próxima Turma"**
+- Data de início: 11 de maio de 2026
+- Mensagem de vagas limitadas
+- CTA de conversão
 
-### Design & Identidade
-- Fundo escuro (#0a0a1a → #141432) com gradientes sutis, seguindo o site do ecossistema
-- Azul primário (#4f46e5 / #3b82f6) para CTAs e destaques
-- Cards com bordas sutis e efeito glassmorphism leve
-- Animações de entrada suaves nos módulos (fade-in ao scroll)
-- Responsivo para mobile
+**6. Seção CTA Final atualizada**
+- Copy: "Pronto para transformar sua gestão?"
+- Menção ao diagnóstico gratuito para participantes
 
-### Dados dos módulos 2, 3 e 4
-Como os temas ainda estão sendo estruturados, vou usar conteúdo placeholder editável para Pessoas/Saúde/Bem-estar e marcar o 4º como "em breve". Tudo fácil de atualizar depois.
+### Seções removidas/simplificadas
+- "Para quem é" (AudienceSection) — simplificada ou integrada
+- "Por que a Chordata" — mantida como prova social
+
+### Arquivos alterados
+- `HeroSection.tsx` — logo maior, copy atualizada
+- `ModulesSection.tsx` — 4 módulos completos com conteúdo real
+- `CTASection.tsx` — copy atualizada + data próxima turma
+- Novo: `BenefitsSection.tsx` — seção "O que você vai receber"
+- Novo: `StructureSection.tsx` — seção "Estrutura da Mentoria"
+- `AudienceSection.tsx` — removida ou refatorada
+- `Index.tsx` — nova ordem de seções
 
