@@ -1,0 +1,65 @@
+import { Users, User, UsersRound, ClipboardCheck } from "lucide-react";
+
+const items = [
+  {
+    icon: Users,
+    value: "4",
+    label: "Encontros em Grupo",
+    description: "Sessões temáticas com todos os participantes da turma, conduzidas por especialistas.",
+  },
+  {
+    icon: User,
+    value: "2",
+    label: "Encontros Individuais",
+    description: "Sessões exclusivas para tratar os desafios específicos da sua empresa.",
+  },
+  {
+    icon: UsersRound,
+    value: "Máx. 8",
+    label: "Integrantes por Turma",
+    description: "Turmas reduzidas para garantir atenção personalizada e troca de qualidade.",
+  },
+  {
+    icon: ClipboardCheck,
+    value: "Incluso",
+    label: "Diagnóstico Gratuito",
+    description: "Análise completa do seu negócio antes do início da mentoria.",
+  },
+];
+
+const StructureSection = () => {
+  return (
+    <section className="py-24 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div data-animate className="opacity-0 text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Estrutura da <span className="gradient-text">Mentoria</span>
+          </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Um programa completo desenhado para entregar resultados práticos em cada etapa.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {items.map((item, i) => (
+            <div
+              key={item.label}
+              data-animate
+              className="opacity-0 glass-card card-glow p-8 text-center group"
+              style={{ animationDelay: `${i * 100}ms` }}
+            >
+              <div className="w-14 h-14 rounded-xl bg-brand-teal/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-teal/20 transition-colors">
+                <item.icon className="w-7 h-7 text-brand-teal" />
+              </div>
+              <div className="text-3xl font-bold mb-1 gradient-text">{item.value}</div>
+              <div className="text-base font-semibold mb-2">{item.label}</div>
+              <p className="text-sm text-muted-foreground">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default StructureSection;

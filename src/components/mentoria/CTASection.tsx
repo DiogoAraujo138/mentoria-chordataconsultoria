@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle, CalendarDays } from "lucide-react";
 import chordataLogo from "@/assets/logos/chordata-logo-white.png";
 
 const CTASection = () => {
@@ -10,24 +10,40 @@ const CTASection = () => {
         <div className="w-[500px] h-[300px] bg-brand-teal/5 rounded-full blur-[100px]" />
       </div>
 
-      <div data-animate className="opacity-0 relative z-10 max-w-3xl mx-auto text-center space-y-8">
-        <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-          Pronto para transformar a{" "}
-          <span className="gradient-text">gestão do seu negócio</span>?
-        </h2>
-        <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-          Entre em contato para garantir sua vaga na próxima turma da mentoria Chordata.
-        </p>
+      <div className="relative z-10 max-w-3xl mx-auto space-y-16">
+        {/* Próxima turma */}
+        <div data-animate className="opacity-0 glass-card card-glow p-10 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 text-sm text-brand-teal font-medium">
+            <CalendarDays className="w-4 h-4" />
+            Próxima Turma
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Início em <span className="gradient-text">11 de Maio de 2026</span>
+          </h2>
+          <p className="text-muted-foreground max-w-lg mx-auto">
+            Turmas limitadas a 8 participantes. Garanta sua vaga e receba um diagnóstico gratuito da sua empresa.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+            <Button size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
+              Garantir Minha Vaga
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <Button variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20">
+              <MessageCircle className="mr-2 w-5 h-5" />
+              Falar no WhatsApp
+            </Button>
+          </div>
+        </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-          <Button size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground">
-            Quero Participar
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-          <Button variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20">
-            <MessageCircle className="mr-2 w-5 h-5" />
-            Falar no WhatsApp
-          </Button>
+        {/* CTA final */}
+        <div data-animate className="opacity-0 text-center space-y-6">
+          <h2 className="text-2xl md:text-3xl font-bold">
+            Pronto para transformar a{" "}
+            <span className="gradient-text">gestão do seu negócio</span>?
+          </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Junte-se a gestores que já estão mudando a forma de administrar seus negócios veterinários.
+          </p>
         </div>
       </div>
 
