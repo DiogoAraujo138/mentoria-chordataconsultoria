@@ -1,57 +1,54 @@
 
 
-## Atualização da Landing Page — Mentoria Chordata
+## Ajustes na Landing Page — Mentoria Chordata
 
-Baseado no material de referência da sua colega, a landing page precisa ser reestruturada com conteúdo atualizado e novas seções.
+Três blocos de alterações baseados no seu feedback e nas referências do site do ecossistema.
 
-### Mudanças principais
+---
 
-**1. Hero Section — Logo maior + copy de LP**
-- Logo Chordata significativamente maior (de `h-16` para `h-24`/`h-32`)
-- Título atualizado: "Mentoria em Gestão Clínica e Hospitalar"
-- Subtítulo: "Uma experiência imersiva com especialistas em gestão veterinária. Networking, conhecimento prático e ferramentas prontas para transformar sua empresa."
-- Badge: "Transforme sua gestão veterinária"
-- CTA principal: "Garantir Vaga" / "Saiba Mais"
+### 1. Estrutura da Mentoria — Números atualizados
 
-**2. Nova seção — "O que você vai receber" (6 benefícios)**
-- Networking de Alto Impacto
-- Especialistas em Gestão
-- Descontos no Ecossistema
-- Diagnóstico Gratuito
-- Materiais Facilitadores
-- Treinamentos Gravados
+Arquivo: `StructureSection.tsx`
 
-**3. Nova seção — "Estrutura da Mentoria"**
-- 4 Encontros em Grupo
-- 2 Encontros Individuais
-- Turmas de máx. 8 integrantes
-- Diagnóstico Gratuito incluso
+- Adicionar card **"20h de Treinamento"** — horas totais de conteúdo gravado/ao vivo
+- Alterar Encontros Individuais de **2** para **4 horas de mentoria individual personalizada**
+- Alterar máximo de integrantes de **8** para **10**
+- Manter Diagnóstico Gratuito incluso
 
-**4. Módulos atualizados (todos os 4 definidos)**
-- **Gestão de Pessoas**: turnover, recrutamento, desenvolvimento de equipes
-- **Gestão Comercial**: atendimento, sistemas, treinamento de recepção
-- **Gestão de Dados e Finanças**: BI, análise de dados, dashboards (já existente)
-- **Gestão de Fluxogramas e POPs**: modelos prontos, metodologia, documentação
+---
 
-**5. Nova seção — "Próxima Turma"**
-- Data de início: 11 de maio de 2026
-- Mensagem de vagas limitadas
-- CTA de conversão
+### 2. Seção "Por que a Chordata" — Redesign completo
 
-**6. Seção CTA Final atualizada**
-- Copy: "Pronto para transformar sua gestão?"
-- Menção ao diagnóstico gratuito para participantes
+Arquivo: `WhyChordataSection.tsx`
 
-### Seções removidas/simplificadas
-- "Para quem é" (AudienceSection) — simplificada ou integrada
-- "Por que a Chordata" — mantida como prova social
+Baseado nas imagens de referência (image.png e image-3.png) e nos dados reais do site do ecossistema:
+
+**Números corrigidos (conforme referência visual):**
+- **+2.000** Pessoas Movimentadas
+- **+60** Projetos de Consultoria
+- **+300** Pessoas Capacitadas
+- **8** Estados Atendidos
+
+**Novo layout:** Grid 2x2 com os números em destaque (texto grande azul, como na image-3.png), substituindo o layout atual de 4 cards com ícones. Design mais impactante, com os valores numéricos em `text-brand-blue` grande e labels abaixo.
+
+**Ecossistema integrado:** Manter os logos (Chordata Analytics, MentAll.Vet, ABHV) na parte inferior, como já existe.
+
+---
+
+### 3. Seção "Por que a Chordata" — Conteúdo expandido
+
+Além dos números, adicionar contexto do ecossistema referenciando as 5 soluções integradas:
+- Chordata Consultoria (Estratégia e Gestão)
+- MentAll.Vet (Saúde Mental)
+- Chordata Analytics (Inteligência de Dados)
+- JurídicoPet Digital (Conformidade Jurídica)
+- VetConnection (Feiras e Eventos)
+
+Menção à presença em **8 estados**, sede no Instituto Caldeira (Porto Alegre), e parceria PAVE/ABHV.
+
+---
 
 ### Arquivos alterados
-- `HeroSection.tsx` — logo maior, copy atualizada
-- `ModulesSection.tsx` — 4 módulos completos com conteúdo real
-- `CTASection.tsx` — copy atualizada + data próxima turma
-- Novo: `BenefitsSection.tsx` — seção "O que você vai receber"
-- Novo: `StructureSection.tsx` — seção "Estrutura da Mentoria"
-- `AudienceSection.tsx` — removida ou refatorada
-- `Index.tsx` — nova ordem de seções
+- `StructureSection.tsx` — novos cards (20h treinamento, 4h individual, 10 integrantes)
+- `WhyChordataSection.tsx` — números corrigidos, layout redesenhado estilo referência
 
