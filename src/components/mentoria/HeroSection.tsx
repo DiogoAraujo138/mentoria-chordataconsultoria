@@ -18,11 +18,6 @@ const HeroSection = () => {
           <img src={chordataLogo} alt="Chordata Consultoria" className="h-20 md:h-28 lg:h-32 w-auto" />
         </div>
 
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-muted-foreground">
-          <Sparkles className="w-4 h-4 text-brand-teal" />
-          <span>Transforme sua gestão veterinária</span>
-        </div>
 
         {/* Headline */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
@@ -43,11 +38,13 @@ const HeroSection = () => {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-          <Button size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
-            Garantir Minha Vaga
-            <ArrowRight className="ml-2 w-5 h-5" />
+          <Button asChild size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
+            <a href="https://wa.me/5551976222707?text=Olá! Tenho interesse na Mentoria em Gestão Clínica e Hospitalar" target="_blank" rel="noopener noreferrer">
+              Garantir Minha Vaga
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
           </Button>
-          <Button variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20">
+          <Button variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20" onClick={() => document.getElementById('beneficios')?.scrollIntoView({ behavior: 'smooth' })}>
             Saiba Mais
           </Button>
         </div>
@@ -63,7 +60,7 @@ const HeroSection = () => {
             <span>Encontros Individuais</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-foreground">8</span>
+            <span className="text-2xl font-bold text-foreground">10</span>
             <span>Vagas por Turma</span>
           </div>
         </div>
