@@ -13,29 +13,29 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
-        {/* Logo */}
-        <div className="flex justify-center mb-4">
-          <img src={chordataLogo} alt="Chordata Consultoria" className="h-12 md:h-16 w-auto" />
+        {/* Logo — destaque grande */}
+        <div className="flex justify-center mb-6">
+          <img src={chordataLogo} alt="Chordata Consultoria" className="h-20 md:h-28 lg:h-32 w-auto" />
         </div>
 
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-muted-foreground">
           <Sparkles className="w-4 h-4 text-brand-teal" />
-          <span>Novo Produto — Mentoria Exclusiva</span>
+          <span>Transforme sua gestão veterinária</span>
         </div>
 
         {/* Headline */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
-          Mentoria para{" "}
-          <span className="gradient-text">Gestores</span>
+          Mentoria em{" "}
+          <span className="gradient-text">Gestão Clínica</span>
           <br />
-          do Mercado Veterinário
+          e Hospitalar
         </h1>
 
         {/* Subtitle */}
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          4 encontros práticos para transformar a gestão do seu negócio veterinário.
-          Decisões baseadas em dados, pessoas e bem-estar.
+          Uma experiência imersiva com especialistas em gestão veterinária.
+          Networking, conhecimento prático e ferramentas prontas para transformar sua empresa.
         </p>
 
         {/* Gradient divider */}
@@ -44,7 +44,7 @@ const HeroSection = () => {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
           <Button size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
-            Quero Participar
+            Garantir Minha Vaga
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
           <Button variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20">
@@ -56,15 +56,15 @@ const HeroSection = () => {
         <div className="flex flex-wrap justify-center gap-8 pt-8 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <span className="text-2xl font-bold text-foreground">4</span>
-            <span>Encontros</span>
+            <span>Encontros em Grupo</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-foreground">100%</span>
-            <span>Prático</span>
+            <span className="text-2xl font-bold text-foreground">2</span>
+            <span>Encontros Individuais</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-foreground">Online</span>
-            <span>& Ao vivo</span>
+            <span className="text-2xl font-bold text-foreground">8</span>
+            <span>Vagas por Turma</span>
           </div>
         </div>
       </div>

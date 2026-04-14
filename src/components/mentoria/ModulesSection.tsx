@@ -1,10 +1,34 @@
-import { BarChart3, Users, Heart, Lock } from "lucide-react";
+import { Users, ShoppingCart, BarChart3, FileCheck } from "lucide-react";
 
 const modules = [
   {
     number: "01",
+    icon: Users,
+    title: "Gestão de Pessoas",
+    subtitle: "Construa equipes engajadas e reduza o turnover no seu negócio veterinário.",
+    topics: [
+      "Redução de turnover e retenção de talentos",
+      "Recrutamento e seleção no mercado vet",
+      "Desenvolvimento de lideranças internas",
+      "Cultura organizacional e engajamento",
+    ],
+  },
+  {
+    number: "02",
+    icon: ShoppingCart,
+    title: "Gestão Comercial",
+    subtitle: "Transforme o atendimento e aumente o faturamento com processos claros.",
+    topics: [
+      "Atendimento ao cliente como diferencial",
+      "Sistemas de gestão e automação comercial",
+      "Treinamento de equipe de recepção",
+      "Estratégias de vendas e fidelização",
+    ],
+  },
+  {
+    number: "03",
     icon: BarChart3,
-    title: "Gestão Financeira e Dados",
+    title: "Gestão de Dados e Finanças",
     subtitle: "Descomplique a gestão financeira tomando decisões baseadas em dados.",
     topics: [
       "Gestão financeira baseada em dados",
@@ -12,41 +36,18 @@ const modules = [
       "Conceitos de Business Intelligence",
       "Ferramentas, relatórios e dashboards",
     ],
-    ready: true,
-  },
-  {
-    number: "02",
-    icon: Users,
-    title: "Gestão de Pessoas",
-    subtitle: "Construa equipes engajadas e uma cultura organizacional forte.",
-    topics: [
-      "Liderança no ambiente veterinário",
-      "Cultura organizacional e engajamento",
-      "Gestão de equipes e processos",
-      "Comunicação e feedback efetivo",
-    ],
-    ready: true,
-  },
-  {
-    number: "03",
-    icon: Heart,
-    title: "Saúde e Bem-Estar",
-    subtitle: "Cuide de quem cuida: saúde mental e equilíbrio na rotina veterinária.",
-    topics: [
-      "Saúde mental no ambiente veterinário",
-      "Prevenção de burnout e fadiga",
-      "Equilíbrio entre vida pessoal e profissional",
-      "Conexão com o ecossistema MentAll.Vet",
-    ],
-    ready: true,
   },
   {
     number: "04",
-    icon: Lock,
-    title: "Em Breve",
-    subtitle: "Estamos preparando um conteúdo especial para completar sua jornada.",
-    topics: [],
-    ready: false,
+    icon: FileCheck,
+    title: "Gestão de Fluxogramas e POPs",
+    subtitle: "Padronize processos e ganhe eficiência com documentação pronta para uso.",
+    topics: [
+      "Criação e implementação de POPs",
+      "Fluxogramas de processos internos",
+      "Metodologia de padronização",
+      "Modelos prontos para aplicar",
+    ],
   },
 ];
 
@@ -68,9 +69,7 @@ const ModulesSection = () => {
             <div
               key={mod.number}
               data-animate
-              className={`opacity-0 glass-card card-glow p-8 relative overflow-hidden group ${
-                !mod.ready ? "opacity-60" : ""
-              }`}
+              className="opacity-0 glass-card card-glow p-8 relative overflow-hidden group"
               style={{ animationDelay: `${i * 150}ms` }}
             >
               {/* Module number */}
@@ -86,23 +85,14 @@ const ModulesSection = () => {
                 <h3 className="text-xl font-semibold mb-2">{mod.title}</h3>
                 <p className="text-muted-foreground mb-6">{mod.subtitle}</p>
 
-                {mod.topics.length > 0 && (
-                  <ul className="space-y-2">
-                    {mod.topics.map((topic) => (
-                      <li key={topic} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-teal mt-1.5 shrink-0" />
-                        {topic}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {!mod.ready && (
-                  <div className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground/60">
-                    <Lock className="w-4 h-4" />
-                    Conteúdo em desenvolvimento
-                  </div>
-                )}
+                <ul className="space-y-2">
+                  {mod.topics.map((topic) => (
+                    <li key={topic} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-teal mt-1.5 shrink-0" />
+                      {topic}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}
