@@ -1,6 +1,12 @@
-import { Users, User, UsersRound, ClipboardCheck } from "lucide-react";
+import { Users, User, UsersRound, ClipboardCheck, Clock } from "lucide-react";
 
 const items = [
+  {
+    icon: Clock,
+    value: "20h",
+    label: "De Treinamento",
+    description: "Horas de conteúdo prático entre sessões ao vivo e treinamentos gravados.",
+  },
   {
     icon: Users,
     value: "4",
@@ -9,13 +15,13 @@ const items = [
   },
   {
     icon: User,
-    value: "2",
-    label: "Encontros Individuais",
-    description: "Sessões exclusivas para tratar os desafios específicos da sua empresa.",
+    value: "4h",
+    label: "Mentoria Individual",
+    description: "Horas de mentoria personalizada para tratar os desafios específicos da sua empresa.",
   },
   {
     icon: UsersRound,
-    value: "Máx. 8",
+    value: "Máx. 10",
     label: "Integrantes por Turma",
     description: "Turmas reduzidas para garantir atenção personalizada e troca de qualidade.",
   },
@@ -40,7 +46,7 @@ const StructureSection = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {items.map((item, i) => (
             <div
               key={item.label}
