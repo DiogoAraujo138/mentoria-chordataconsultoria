@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import chordataLogo from "@/assets/logos/chordata-logo-white.png";
 
 const HeroSection = () => {
