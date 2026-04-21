@@ -2,7 +2,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageCircle, CalendarDays } from "lucide-react";
 import chordataLogo from "@/assets/logos/chordata-logo-white.png";
 
-const CTASection = () => {
+interface CTASectionProps {
+  onOpenRegistration: () => void;
+}
+
+const CTASection = ({ onOpenRegistration }: CTASectionProps) => {
   return (
     <section className="py-24 px-4 relative">
       {/* Glow effect */}
@@ -24,11 +28,9 @@ const CTASection = () => {
             Turmas limitadas a 10 participantes. Garanta sua vaga e receba um diagnóstico gratuito da sua empresa.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-            <Button asChild size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
-              <a href="https://wa.me/5551976222707?text=Olá! Tenho interesse na Mentoria em Gestão Clínica e Hospitalar" target="_blank" rel="noopener noreferrer">
-                Garantir Minha Vaga
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
+            <Button size="lg" onClick={onOpenRegistration} className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
+              Garantir Minha Vaga
+              <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button asChild variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20">
               <a href="https://wa.me/5551976222707?text=Olá! Gostaria de saber mais sobre a Mentoria Chordata" target="_blank" rel="noopener noreferrer">

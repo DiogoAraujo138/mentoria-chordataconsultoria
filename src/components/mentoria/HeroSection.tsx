@@ -2,7 +2,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import chordataLogo from "@/assets/logos/chordata-logo-white.png";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onOpenRegistration: () => void;
+}
+
+const HeroSection = ({ onOpenRegistration }: HeroSectionProps) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
       {/* Background effects */}
@@ -38,11 +42,9 @@ const HeroSection = () => {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-          <Button asChild size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
-            <a href="https://wa.me/5551976222707?text=Olá! Tenho interesse na Mentoria em Gestão Clínica e Hospitalar" target="_blank" rel="noopener noreferrer">
-              Garantir Minha Vaga
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </a>
+          <Button size="lg" onClick={onOpenRegistration} className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
+            Garantir Minha Vaga
+            <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
           <Button variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20" onClick={() => document.getElementById('beneficios')?.scrollIntoView({ behavior: 'smooth' })}>
             Saiba Mais
