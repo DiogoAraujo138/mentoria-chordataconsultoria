@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import HeroSection from "@/components/mentoria/HeroSection";
 import BenefitsSection from "@/components/mentoria/BenefitsSection";
+import MetodoRP3Section from "@/components/mentoria/MetodoRP3Section";
 import StructureSection from "@/components/mentoria/StructureSection";
 import ModulesSection from "@/components/mentoria/ModulesSection";
 import WhyChordataSection from "@/components/mentoria/WhyChordataSection";
@@ -33,6 +34,7 @@ const Index = () => {
     <div ref={sectionsRef} className="min-h-screen bg-background overflow-x-hidden">
       <HeroSection />
       <BenefitsSection />
+      <MetodoRP3Section />
       <StructureSection />
       <ModulesSection />
       <WhyChordataSection />
