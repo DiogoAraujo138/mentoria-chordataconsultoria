@@ -1,54 +1,73 @@
+## Mentoria RP3 — Integração do Método e ajuste de turma
 
-
-## Ajustes na Landing Page — Mentoria Chordata
-
-Três blocos de alterações baseados no seu feedback e nas referências do site do ecossistema.
+Três blocos de mudança baseados no site da Chordata Consultoria (chordataconsultoria.com) e no print de referência do Método RP3.
 
 ---
 
-### 1. Estrutura da Mentoria — Números atualizados
+### 1. Renomear a mentoria para "RP3"
 
-Arquivo: `StructureSection.tsx`
+Atualizar headline e textos para reforçar o nome **Mentoria RP3 — Gestão Clínica e Hospitalar Veterinária**.
 
-- Adicionar card **"20h de Treinamento"** — horas totais de conteúdo gravado/ao vivo
-- Alterar Encontros Individuais de **2** para **4 horas de mentoria individual personalizada**
-- Alterar máximo de integrantes de **8** para **10**
-- Manter Diagnóstico Gratuito incluso
-
----
-
-### 2. Seção "Por que a Chordata" — Redesign completo
-
-Arquivo: `WhyChordataSection.tsx`
-
-Baseado nas imagens de referência (image.png e image-3.png) e nos dados reais do site do ecossistema:
-
-**Números corrigidos (conforme referência visual):**
-- **+2.000** Pessoas Movimentadas
-- **+60** Projetos de Consultoria
-- **+300** Pessoas Capacitadas
-- **8** Estados Atendidos
-
-**Novo layout:** Grid 2x2 com os números em destaque (texto grande azul, como na image-3.png), substituindo o layout atual de 4 cards com ícones. Design mais impactante, com os valores numéricos em `text-brand-blue` grande e labels abaixo.
-
-**Ecossistema integrado:** Manter os logos (Chordata Analytics, MentAll.Vet, ABHV) na parte inferior, como já existe.
+- `HeroSection.tsx`
+  - Headline: **"Mentoria RP3"** com subtítulo **"Gestão Clínica e Hospitalar Veterinária"**
+  - Subtitle: incluir menção ao método RP3 da Chordata Consultoria
+- `index.html` — atualizar `<title>` e meta description (SEO)
+- `CTASection.tsx` — pequeno ajuste no copy final mencionando RP3
 
 ---
 
-### 3. Seção "Por que a Chordata" — Conteúdo expandido
+### 2. Nova seção "Método RP3" (NOVA)
 
-Além dos números, adicionar contexto do ecossistema referenciando as 5 soluções integradas:
-- Chordata Consultoria (Estratégia e Gestão)
-- MentAll.Vet (Saúde Mental)
-- Chordata Analytics (Inteligência de Dados)
-- JurídicoPet Digital (Conformidade Jurídica)
-- VetConnection (Feiras e Eventos)
+Arquivo novo: `src/components/mentoria/MetodoRP3Section.tsx`, inserida em `Index.tsx` **entre `BenefitsSection` e `StructureSection`**.
 
-Menção à presença em **8 estados**, sede no Instituto Caldeira (Porto Alegre), e parceria PAVE/ABHV.
+Estrutura inspirada no print de referência (3 cards numerados 01/02/03):
+
+```text
+— NOSSO MÉTODO —
+Método Chordata · RP3
+[descrição: metodologia proprietária aplicada aos 3 pilares...]
+
+[Processos] → [Pessoas] → [Planejamento]   (chips/badges)
+
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│ 🔍   01     │  │ 🤝   02     │  │ 📋   03     │
+│ Processos   │  │ Pessoas     │  │ Planejamento│
+│ Medir e     │  │ Desenvolver │  │ Controlar e │
+│ Analisar    │  │ e Engajar   │  │ Crescer     │
+│             │  │             │  │             │
+│ [parágrafo] │  │ [parágrafo] │  │ [parágrafo] │
+│ ─────────── │  │ ─────────── │  │ ─────────── │
+│ • tópico 1  │  │ • tópico 1  │  │ • tópico 1  │
+│ • tópico 2  │  │ • tópico 2  │  │ • tópico 2  │
+│ • tópico 3  │  │ • tópico 3  │  │ • tópico 3  │
+└─────────────┘  └─────────────┘  └─────────────┘
+```
+
+Conteúdo dos 3 pilares (do print de referência):
+
+- **01 · Processos — Medir e Analisar** (azul/brand-blue)
+  - Diagnóstico de Precisão, Análise de Dados, Integração Comercial
+- **02 · Pessoas — Desenvolver e Engajar** (teal/brand-teal)
+  - Habilidade de Gestor, Solidificação da Base, Estruturação de Cargos
+- **03 · Planejamento — Controlar e Crescer** (amarelo/âmbar)
+  - Planejamento Operacional, Financeiro, Comercial
+
+Estilo: cards `glass-card` no padrão do projeto, com número grande no canto superior direito (semelhante ao `ModulesSection`), ícones Lucide (`Search`, `Handshake`/`Users`, `LayoutGrid`/`Target`), e cor de destaque por pilar para o subtítulo de ação.
+
+Por que adicionar: explica o "porquê" da mentoria — ela aplica a mesma metodologia proprietária usada nos projetos de consultoria da Chordata.
 
 ---
 
-### Arquivos alterados
-- `StructureSection.tsx` — novos cards (20h treinamento, 4h individual, 10 integrantes)
-- `WhyChordataSection.tsx` — números corrigidos, layout redesenhado estilo referência
+### 3. Próxima turma → Junho de 2026
 
+`CTASection.tsx`:
+- Trocar **"Início em 11 de Maio de 2026"** por **"Início em Junho de 2026"** (mantendo o destaque com `gradient-text`).
+
+---
+
+### Arquivos alterados / criados
+- **novo:** `src/components/mentoria/MetodoRP3Section.tsx`
+- editado: `src/pages/Index.tsx` (incluir a nova seção)
+- editado: `src/components/mentoria/HeroSection.tsx` (renomear para RP3)
+- editado: `src/components/mentoria/CTASection.tsx` (data Junho/2026 + copy)
+- editado: `index.html` (title/meta SEO)

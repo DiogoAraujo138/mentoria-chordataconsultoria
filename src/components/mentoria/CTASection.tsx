@@ -18,7 +18,7 @@ const CTASection = () => {
             Próxima Turma
           </div>
           <h2 className="text-3xl md:text-4xl font-bold">
-            Início em <span className="gradient-text">11 de Maio de 2026</span>
+            Início em <span className="gradient-text">Junho de 2026</span>
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
             Turmas limitadas a 10 participantes. Garanta sua vaga e receba um diagnóstico gratuito da sua empresa.

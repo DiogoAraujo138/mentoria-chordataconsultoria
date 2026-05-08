@@ -21,16 +21,16 @@ const HeroSection = () => {
 
         {/* Headline */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
-          Mentoria em{" "}
-          <span className="gradient-text">Gestão Clínica</span>
+          Mentoria <span className="gradient-text">RP3</span>
           <br />
-          e Hospitalar
+          Gestão Clínica e Hospitalar Veterinária
         </h1>
 
         {/* Subtitle */}
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Uma experiência imersiva com especialistas em gestão veterinária.
-          Networking, conhecimento prático e ferramentas prontas para transformar sua empresa.
+          Uma imersão baseada no Método RP3 da Chordata Consultoria — a mesma metodologia
+          aplicada nos nossos projetos, integrando <strong>Processos, Pessoas e Planejamento</strong> para
+          transformar a gestão do seu negócio veterinário.
         </p>
 
         {/* Gradient divider */}
