@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CalendarDays } from "lucide-react";
 import chordataLogo from "@/assets/logos/chordata-logo-white.png";
 
 const HeroSection = () => {
@@ -16,6 +16,12 @@ const HeroSection = () => {
         {/* Logo — destaque grande */}
         <div className="flex justify-center mb-6">
           <img src={chordataLogo} alt="Chordata Consultoria" className="h-20 md:h-28 lg:h-32 w-auto" />
+        </div>
+
+        {/* Próxima turma badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 text-sm text-brand-teal font-medium">
+          <CalendarDays className="w-4 h-4" />
+          Próxima turma — Junho de 2026 · vagas limitadas
         </div>
 
 
@@ -52,12 +58,12 @@ const HeroSection = () => {
         {/* Stats row */}
         <div className="flex flex-wrap justify-center gap-8 pt-8 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-foreground">4</span>
-            <span>Encontros em Grupo</span>
+            <span className="text-2xl font-bold text-foreground">20h</span>
+            <span>de Treinamento</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-foreground">2</span>
-            <span>Encontros Individuais</span>
+            <span className="text-2xl font-bold text-foreground">4h</span>
+            <span>Mentoria Individual</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-2xl font-bold text-foreground">10</span>

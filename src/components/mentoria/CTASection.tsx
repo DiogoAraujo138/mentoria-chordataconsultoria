@@ -21,19 +21,20 @@ const CTASection = () => {
             Início em <span className="gradient-text">Junho de 2026</span>
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Turmas limitadas a 10 participantes. Garanta sua vaga e receba um diagnóstico gratuito da sua empresa.
+            A turma da Mentoria RP3 é limitada a 10 participantes. Garanta sua vaga agora e
+            receba um diagnóstico gratuito da sua empresa antes do início.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Button asChild size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
-              <a href="https://wa.me/5551976222707?text=Olá! Tenho interesse na Mentoria em Gestão Clínica e Hospitalar" target="_blank" rel="noopener noreferrer">
-                Garantir Minha Vaga
+              <a href="https://wa.me/5551976222707?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20na%20Mentoria%20RP3%20%E2%80%94%20Gest%C3%A3o%20Cl%C3%ADnica%20e%20Hospitalar%20Veterin%C3%A1ria%20(turma%20de%20Junho%2F2026).%20Pode%20me%20enviar%20os%20pr%C3%B3ximos%20passos%20para%20inscri%C3%A7%C3%A3o%3F" target="_blank" rel="noopener noreferrer">
+                Quero me Inscrever — Turma Junho/2026
                 <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </Button>
             <Button asChild variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20">
-              <a href="https://wa.me/5551976222707?text=Olá! Gostaria de saber mais sobre a Mentoria Chordata" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5551976222707?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Mentoria%20RP3%20(turma%20de%20Junho%2F2026)%20e%20como%20funciona%20o%20processo%20de%20inscri%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-2 w-5 h-5" />
-                Falar no WhatsApp
+                Tirar Dúvidas no WhatsApp
               </a>
             </Button>
           </div>
@@ -42,12 +43,21 @@ const CTASection = () => {
         {/* CTA final */}
         <div data-animate className="opacity-0 text-center space-y-6">
           <h2 className="text-2xl md:text-3xl font-bold">
-            Pronto para transformar a{" "}
-            <span className="gradient-text">gestão do seu negócio</span>?
+            Pronto para aplicar o{" "}
+            <span className="gradient-text">Método RP3</span> no seu negócio?
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Junte-se a gestores que já estão mudando a forma de administrar seus negócios veterinários.
+            Inscreva-se na turma de <strong>Junho de 2026</strong> e dê o próximo passo na profissionalização
+            da sua gestão veterinária ao lado de outros gestores do setor.
           </p>
+          <div className="flex justify-center pt-2">
+            <Button asChild size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground">
+              <a href="https://wa.me/5551976222707?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20na%20Mentoria%20RP3%20%E2%80%94%20Gest%C3%A3o%20Cl%C3%ADnica%20e%20Hospitalar%20Veterin%C3%A1ria%20(turma%20de%20Junho%2F2026).%20Pode%20me%20enviar%20os%20pr%C3%B3ximos%20passos%20para%20inscri%C3%A7%C3%A3o%3F" target="_blank" rel="noopener noreferrer">
+                Iniciar minha inscrição
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
 
