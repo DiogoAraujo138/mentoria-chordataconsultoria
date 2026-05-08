@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CalendarDays } from "lucide-react";
 import chordataLogo from "@/assets/logos/chordata-logo-white.png";
 
 const HeroSection = () => {
@@ -16,6 +16,12 @@ const HeroSection = () => {
         {/* Logo — destaque grande */}
         <div className="flex justify-center mb-6">
           <img src={chordataLogo} alt="Chordata Consultoria" className="h-20 md:h-28 lg:h-32 w-auto" />
+        </div>
+
+        {/* Próxima turma badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 text-sm text-brand-teal font-medium">
+          <CalendarDays className="w-4 h-4" />
+          Próxima turma — Junho de 2026 · vagas limitadas
         </div>
 
 
@@ -39,8 +45,8 @@ const HeroSection = () => {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
           <Button asChild size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
-            <a href="https://wa.me/5551976222707?text=Olá! Tenho interesse na Mentoria em Gestão Clínica e Hospitalar" target="_blank" rel="noopener noreferrer">
-              Garantir Minha Vaga
+            <a href="https://wa.me/5551976222707?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20na%20Mentoria%20RP3%20%E2%80%94%20Gest%C3%A3o%20Cl%C3%ADnica%20e%20Hospitalar%20Veterin%C3%A1ria%20(turma%20de%20Junho%2F2026).%20Pode%20me%20enviar%20os%20pr%C3%B3ximos%20passos%20para%20inscri%C3%A7%C3%A3o%3F" target="_blank" rel="noopener noreferrer">
+              Quero me Inscrever — Turma Junho/2026
               <ArrowRight className="ml-2 w-5 h-5" />
             </a>
           </Button>
@@ -52,12 +58,12 @@ const HeroSection = () => {
         {/* Stats row */}
         <div className="flex flex-wrap justify-center gap-8 pt-8 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-foreground">4</span>
-            <span>Encontros em Grupo</span>
+            <span className="text-2xl font-bold text-foreground">20h</span>
+            <span>de Treinamento</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-foreground">2</span>
-            <span>Encontros Individuais</span>
+            <span className="text-2xl font-bold text-foreground">4h</span>
+            <span>Mentoria Individual</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-2xl font-bold text-foreground">10</span>
