@@ -26,13 +26,13 @@ const CTASection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Button asChild size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow">
-              <a href="https://wa.me/555189591600?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20na%20Mentoria%20RP3%20%E2%80%94%20Gest%C3%A3o%20Cl%C3%ADnica%20e%20Hospitalar%20Veterin%C3%A1ria%20(turma%20de%20Junho%2F2026).%20Pode%20me%20enviar%20os%20pr%C3%B3ximos%20passos%20para%20inscri%C3%A7%C3%A3o%3F" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5551989591600?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20na%20Mentoria%20RP3%20%E2%80%94%20Gest%C3%A3o%20Cl%C3%ADnica%20e%20Hospitalar%20Veterin%C3%A1ria%20(turma%20de%20Junho%2F2026).%20Pode%20me%20enviar%20os%20pr%C3%B3ximos%20passos%20para%20inscri%C3%A7%C3%A3o%3F" target="_blank" rel="noopener noreferrer">
                 Quero me Inscrever — Turma Junho/2026
                 <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </Button>
             <Button asChild variant="outline" size="lg" className="text-base px-8 py-6 border-muted-foreground/20">
-              <a href="https://wa.me/555189591600?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Mentoria%20RP3%20(turma%20de%20Junho%2F2026)%20e%20como%20funciona%20o%20processo%20de%20inscri%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5551989591600?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Mentoria%20RP3%20(turma%20de%20Junho%2F2026)%20e%20como%20funciona%20o%20processo%20de%20inscri%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-2 w-5 h-5" />
                 Tirar Dúvidas no WhatsApp
               </a>
@@ -52,7 +52,7 @@ const CTASection = () => {
           </p>
           <div className="flex justify-center pt-2">
             <Button asChild size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground">
-              <a href="https://wa.me/555189591600?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20na%20Mentoria%20RP3%20%E2%80%94%20Gest%C3%A3o%20Cl%C3%ADnica%20e%20Hospitalar%20Veterin%C3%A1ria%20(turma%20de%20Junho%2F2026).%20Pode%20me%20enviar%20os%20pr%C3%B3ximos%20passos%20para%20inscri%C3%A7%C3%A3o%3F" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5551989591600?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20na%20Mentoria%20RP3%20%E2%80%94%20Gest%C3%A3o%20Cl%C3%ADnica%20e%20Hospitalar%20Veterin%C3%A1ria%20(turma%20de%20Junho%2F2026).%20Pode%20me%20enviar%20os%20pr%C3%B3ximos%20passos%20para%20inscri%C3%A7%C3%A3o%3F" target="_blank" rel="noopener noreferrer">
                 Iniciar minha inscrição
                 <ArrowRight className="ml-2 w-5 h-5" />
               </a>
