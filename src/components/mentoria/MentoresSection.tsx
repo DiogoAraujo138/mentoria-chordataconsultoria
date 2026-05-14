@@ -13,6 +13,7 @@ import { ChevronDown, ChevronUp, Users } from "lucide-react";
 import marianaBrinoImg from "@/assets/mentores/mariana-brino.jpeg";
 import thalesImg from "@/assets/mentores/thales.png";
 import elizImg from "@/assets/mentores/eliz.png";
+import mikaelImg from "@/assets/mentores/mikael.png";
 
 type Mentor = {
   name: string;
@@ -29,6 +30,7 @@ const mentors: Mentor[] = [
     name: "Mikael Nunes Cattani",
     role: "Administrador · Sócio-Diretor Chordata",
     affiliation: "Equipe Chordata",
+    image: mikaelImg,
     shortBio:
       "12 anos de experiência no mercado veterinário. Sócio-Diretor da Chordata e cofundador de Vet Connection, Mentall.vet e DescomplicaVet.",
     fullBio: [
