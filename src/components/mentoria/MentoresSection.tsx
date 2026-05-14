@@ -59,20 +59,6 @@ const chordataTeam: Mentor[] = [
     ],
   },
   {
-    name: "Diogo Araujo",
-    role: "Consultor & Analista de Dados",
-    image: diogoImg,
-    shortBio:
-      "Especialista em automação de processos e análise de dados aplicada ao setor veterinário. Cria dashboards e ferramentas de inteligência operacional.",
-    fullBio: [
-      "Graduação em Gestão Financeira | Pós-Graduação em Análise de Dados.",
-      "3 anos de experiência no Mercado Veterinário.",
-      "Consultor e Desenvolvedor de Soluções na Chordata Consultoria, especializado em automação de processos e análise de dados.",
-      "Responsável pela criação de dashboards, automação de processos e ferramentas de inteligência operacional aplicadas ao setor veterinário.",
-      "Trabalha para que gestores de clínicas e hospitais tomem decisões com base em dados reais do próprio negócio.",
-    ],
-  },
-  {
     name: "Eliz Modena",
     role: "Psicóloga Organizacional (CRP 07/40461)",
     image: elizImg,
@@ -85,6 +71,20 @@ const chordataTeam: Mentor[] = [
       "Psicóloga Organizacional da Mentall.Vet.",
       "Experiência em todos os subsistemas de Recursos Humanos.",
       "Facilitadora de treinamentos, desenvolvimento de equipes e comunicação organizacional.",
+    ],
+  },
+  {
+    name: "Diogo Araujo",
+    role: "Consultor & Analista de Dados",
+    image: diogoImg,
+    shortBio:
+      "Especialista em automação de processos e análise de dados aplicada ao setor veterinário. Cria dashboards e ferramentas de inteligência operacional.",
+    fullBio: [
+      "Graduação em Gestão Financeira | Pós-Graduação em Análise de Dados.",
+      "3 anos de experiência no Mercado Veterinário.",
+      "Consultor e Desenvolvedor de Soluções na Chordata Consultoria, especializado em automação de processos e análise de dados.",
+      "Responsável pela criação de dashboards, automação de processos e ferramentas de inteligência operacional aplicadas ao setor veterinário.",
+      "Trabalha para que gestores de clínicas e hospitais tomem decisões com base em dados reais do próprio negócio.",
     ],
   },
 ];
@@ -175,9 +175,9 @@ const GuestCard = ({ mentor }: { mentor: Mentor }) => (
 
     <div className="relative shrink-0">
       <div className="absolute -inset-1.5 bg-gradient-to-br from-brand-blue/40 to-brand-teal/30 rounded-2xl blur-md opacity-60" />
-      <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden bg-muted border border-brand-blue/30">
+      <div className="relative w-40 h-52 sm:w-48 sm:h-60 rounded-2xl overflow-hidden bg-muted border border-brand-blue/30">
         {mentor.image ? (
-          <img src={mentor.image} alt={mentor.name} className="w-full h-full object-cover" />
+          <img src={mentor.image} alt={mentor.name} className="w-full h-full object-cover object-top" />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-3xl font-bold text-muted-foreground">
             {getInitials(mentor.name)}
