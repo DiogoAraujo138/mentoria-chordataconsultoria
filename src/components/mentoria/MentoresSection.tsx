@@ -11,6 +11,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronUp, Users } from "lucide-react";
 import marianaBrinoImg from "@/assets/mentores/mariana-brino.jpeg";
+import thalesImg from "@/assets/mentores/thales.png";
 
 type Mentor = {
   name: string;
@@ -68,11 +69,23 @@ const mentors: Mentor[] = [
     ],
   },
   {
-    name: "Thales",
-    role: "Consultor Chordata",
+    name: "Thales Altieri Rodrigues",
+    role: "Administrador · Cofundador e Diretor Chordata",
     affiliation: "Equipe Chordata",
-    shortBio: "Bio completa em breve.",
-    fullBio: ["Bio completa em breve."],
+    image: thalesImg,
+    shortBio:
+      "+6 anos no mercado veterinário e +8 em Gente & Gestão. Especialista em processos, fluxos de trabalho e eficiência operacional.",
+    fullBio: [
+      "Administrador (CRA Nº RS-055120/O), pós-graduado em Business Analytics.",
+      "+6 anos de experiência no Mercado Veterinário.",
+      "+8 anos de atuação nas áreas de Recursos Humanos, Gente & Gestão.",
+      "Especialista em Gestão de Processos, fluxos de trabalho e eficiência operacional.",
+      "Cofundador, diretor e consultor na Chordata Consultoria e Assessoria, especializada em clínicas e hospitais veterinários.",
+      "Cofundador do Chordata Analytics, plataforma de análise de dados, indicadores e BI para o mercado veterinário.",
+      "Cofundador, sócio, diretor de operações e consultor da Mentall Ltda e da plataforma Mentall.Vet.",
+      "Cofundador, sócio e diretor financeiro da Feira e Congresso Vet Connection.",
+      "Cofundador e sócio da plataforma Jurídico Pet Digital.",
+    ],
   },
   {
     name: "Mariana Brino",
