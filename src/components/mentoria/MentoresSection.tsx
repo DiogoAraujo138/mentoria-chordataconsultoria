@@ -175,9 +175,9 @@ const GuestCard = ({ mentor }: { mentor: Mentor }) => (
 
     <div className="relative shrink-0">
       <div className="absolute -inset-1.5 bg-gradient-to-br from-brand-blue/40 to-brand-teal/30 rounded-2xl blur-md opacity-60" />
-      <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden bg-muted border border-brand-blue/30">
+      <div className="relative w-40 h-52 sm:w-48 sm:h-60 rounded-2xl overflow-hidden bg-muted border border-brand-blue/30">
         {mentor.image ? (
-          <img src={mentor.image} alt={mentor.name} className="w-full h-full object-cover" />
+          <img src={mentor.image} alt={mentor.name} className="w-full h-full object-cover object-top" />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-3xl font-bold text-muted-foreground">
             {getInitials(mentor.name)}
