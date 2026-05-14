@@ -5,6 +5,7 @@ import MetodoRP3Section from "@/components/mentoria/MetodoRP3Section";
 import StructureSection from "@/components/mentoria/StructureSection";
 import ModulesSection from "@/components/mentoria/ModulesSection";
 import WhyChordataSection from "@/components/mentoria/WhyChordataSection";
+import MentoresSection from "@/components/mentoria/MentoresSection";
 import CTASection from "@/components/mentoria/CTASection";
 
 const Index = () => {
@@ -38,6 +39,7 @@ const Index = () => {
       <StructureSection />
       <ModulesSection />
       <WhyChordataSection />
+      <MentoresSection />
       <CTASection />
     </div>
   );
