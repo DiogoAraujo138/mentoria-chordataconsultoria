@@ -6,6 +6,7 @@ import StructureSection from "@/components/mentoria/StructureSection";
 import ModulesSection from "@/components/mentoria/ModulesSection";
 import WhyChordataSection from "@/components/mentoria/WhyChordataSection";
 import MentoresSection from "@/components/mentoria/MentoresSection";
+import InvestmentSection from "@/components/mentoria/InvestmentSection";
 import CTASection from "@/components/mentoria/CTASection";
 
 const Index = () => {
@@ -40,6 +41,7 @@ const Index = () => {
       <ModulesSection />
       <WhyChordataSection />
       <MentoresSection />
+      <InvestmentSection />
       <CTASection />
     </div>
   );
