@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronUp, Users } from "lucide-react";
 import marianaBrinoImg from "@/assets/mentores/mariana-brino.jpeg";
 import thalesImg from "@/assets/mentores/thales.png";
+import elizImg from "@/assets/mentores/eliz.png";
 
 type Mentor = {
   name: string;
@@ -57,6 +58,7 @@ const mentors: Mentor[] = [
     name: "Eliz Modena",
     role: "Psicóloga Organizacional (CRP 07/40461)",
     affiliation: "Equipe Chordata",
+    image: elizImg,
     shortBio:
       "+10 anos em RH e Psicologia Organizacional. Consultora Chordata e Psicóloga Organizacional da Mentall.Vet.",
     fullBio: [
