@@ -1,73 +1,59 @@
-## Mentoria RP3 — Integração do Método e ajuste de turma
+# Adicionar seção "Mentores" na Landing Page
 
-Três blocos de mudança baseados no site da Chordata Consultoria (chordataconsultoria.com) e no print de referência do Método RP3.
+## Objetivo
+Criar nova seção apresentando os mentores da Mentoria RP3 — equipe Chordata + parceiros convidados, com Mariana Brino em destaque inicial e os demais colapsados em "Ver mais".
 
----
+## Estrutura da seção
 
-### 1. Renomear a mentoria para "RP3"
+Nova seção `MentoresSection.tsx`, posicionada **entre `WhyChordataSection` e `CTASection`** no `Index.tsx`.
 
-Atualizar headline e textos para reforçar o nome **Mentoria RP3 — Gestão Clínica e Hospitalar Veterinária**.
+Layout:
+- Título: "Quem vai te mentorar"
+- Subtítulo curto sobre a equipe Chordata + convidados
+- **Grid principal (visível)**: 5 cards — Thales, Mikael, Diogo, Eliz (equipe Chordata) + Mariana Brino (convidada, com badge "Convidada")
+- Botão **"Ver mais mentores"** que expande/colapsa cards adicionais (inicialmente vazio, preparado para futuras adições)
 
-- `HeroSection.tsx`
-  - Headline: **"Mentoria RP3"** com subtítulo **"Gestão Clínica e Hospitalar Veterinária"**
-  - Subtitle: incluir menção ao método RP3 da Chordata Consultoria
-- `index.html` — atualizar `<title>` e meta description (SEO)
-- `CTASection.tsx` — pequeno ajuste no copy final mencionando RP3
+## Card de mentor
 
----
+Cada card contém:
+- Foto circular (placeholder por enquanto — você enviará as imagens depois)
+- Nome
+- Cargo / título profissional curto
+- Badge opcional: "Equipe Chordata" ou "Convidada"
+- Bio resumida (2-4 linhas)
+- Botão "Ver mais" → abre Dialog com bio completa, formação, experiência
 
-### 2. Nova seção "Método RP3" (NOVA)
+## Conteúdo dos mentores (rascunho aprovado pelo usuário)
 
-Arquivo novo: `src/components/mentoria/MetodoRP3Section.tsx`, inserida em `Index.tsx` **entre `BenefitsSection` e `StructureSection`**.
+**Mariana Brino** — Convidada
+Médica Veterinária. Especializada em Clínica de Pequenos Animais e Gestão de Clínicas e Hospitais Veterinários.
+Formação: ULBRA, EQUALIS, MBA FAMESP, Pós MBA Mercado Pet FAMESP.
+Cursos: Intensivet, Harvard Business Publishing, Disney.
 
-Estrutura inspirada no print de referência (3 cards numerados 01/02/03):
+**Mikael Nunes Cattani** — Equipe Chordata
+Administrador. MBA Consultoria Empresarial e MBA Gestão de Clínicas e Hospitais Veterinários. 12 anos no mercado veterinário. Sócio/Diretor Chordata, cofundador Feira Vet Connection, Mentall.vet e DescomplicaVet.
 
-```text
-— NOSSO MÉTODO —
-Método Chordata · RP3
-[descrição: metodologia proprietária aplicada aos 3 pilares...]
+**Diogo Araujo** — Equipe Chordata
+Consultor & Analista de Dados. Gestão Financeira + Pós em Análise de Dados. 3 anos no mercado vet. Cria dashboards, automações e inteligência operacional para clínicas/hospitais.
 
-[Processos] → [Pessoas] → [Planejamento]   (chips/badges)
+**Eliz Modena** — Equipe Chordata
+Psicóloga (CRP 07/40461). Pós em Gestão de Pessoas. +10 anos em RH e Psicologia Organizacional. Consultora Chordata, Psicóloga Org. Mentall.Vet. Facilitadora de treinamentos e desenvolvimento de equipes.
 
-┌─────────────┐  ┌─────────────┐  ┌─────────────┐
-│ 🔍   01     │  │ 🤝   02     │  │ 📋   03     │
-│ Processos   │  │ Pessoas     │  │ Planejamento│
-│ Medir e     │  │ Desenvolver │  │ Controlar e │
-│ Analisar    │  │ e Engajar   │  │ Crescer     │
-│             │  │             │  │             │
-│ [parágrafo] │  │ [parágrafo] │  │ [parágrafo] │
-│ ─────────── │  │ ─────────── │  │ ─────────── │
-│ • tópico 1  │  │ • tópico 1  │  │ • tópico 1  │
-│ • tópico 2  │  │ • tópico 2  │  │ • tópico 2  │
-│ • tópico 3  │  │ • tópico 3  │  │ • tópico 3  │
-└─────────────┘  └─────────────┘  └─────────────┘
-```
+**Thales** — Equipe Chordata
+*(faltam dados — usarei placeholder "Em breve" até você enviar bio)*
 
-Conteúdo dos 3 pilares (do print de referência):
+## Detalhes técnicos
 
-- **01 · Processos — Medir e Analisar** (azul/brand-blue)
-  - Diagnóstico de Precisão, Análise de Dados, Integração Comercial
-- **02 · Pessoas — Desenvolver e Engajar** (teal/brand-teal)
-  - Habilidade de Gestor, Solidificação da Base, Estruturação de Cargos
-- **03 · Planejamento — Controlar e Crescer** (amarelo/âmbar)
-  - Planejamento Operacional, Financeiro, Comercial
+- Componente: `src/components/mentoria/MentoresSection.tsx`
+- Dialog do shadcn para bio completa
+- Estrutura de dados: array `mentors` tipado para facilitar adicionar novos parceiros depois
+- Imagens: placeholder cinza com iniciais até você enviar fotos; estrutura preparada para `import` de `src/assets/mentores/`
+- Cores: `brand-teal`/`brand-blue` já existentes, sem cor nova
+- Responsivo: 1 col mobile, 2 cols tablet, 3 cols desktop
+- Animação fade-up via observer já existente
 
-Estilo: cards `glass-card` no padrão do projeto, com número grande no canto superior direito (semelhante ao `ModulesSection`), ícones Lucide (`Search`, `Handshake`/`Users`, `LayoutGrid`/`Target`), e cor de destaque por pilar para o subtítulo de ação.
+## Pendências para você
 
-Por que adicionar: explica o "porquê" da mentoria — ela aplica a mesma metodologia proprietária usada nos projetos de consultoria da Chordata.
-
----
-
-### 3. Próxima turma → Junho de 2026
-
-`CTASection.tsx`:
-- Trocar **"Início em 11 de Maio de 2026"** por **"Início em Junho de 2026"** (mantendo o destaque com `gradient-text`).
-
----
-
-### Arquivos alterados / criados
-- **novo:** `src/components/mentoria/MetodoRP3Section.tsx`
-- editado: `src/pages/Index.tsx` (incluir a nova seção)
-- editado: `src/components/mentoria/HeroSection.tsx` (renomear para RP3)
-- editado: `src/components/mentoria/CTASection.tsx` (data Junho/2026 + copy)
-- editado: `index.html` (title/meta SEO)
+1. Foto de cada mentor (Thales, Mikael, Diogo, Eliz, Mariana)
+2. Bio do Thales
+3. Confirmar ordem dos cards
