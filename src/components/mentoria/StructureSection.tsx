@@ -84,7 +84,7 @@ const StructureSection = () => {
             </h3>
             <p className="text-muted-foreground flex items-center justify-center gap-2 flex-wrap">
               <Clock className="w-4 h-4 text-brand-teal" />
-              <span>às 19h</span>
+              <span>às 19h30 · 3h de duração</span>
               <span className="text-muted-foreground/50">·</span>
               <Video className="w-4 h-4 text-brand-teal" />
               <span>Encontros online ao vivo</span>
@@ -99,7 +99,7 @@ const StructureSection = () => {
               >
                 <div className="text-xs text-muted-foreground mb-1">{enc.dia}</div>
                 <div className="text-lg font-bold text-foreground">{enc.data}</div>
-                <div className="text-sm text-brand-teal font-medium mt-1">19h</div>
+                <div className="text-sm text-brand-teal font-medium mt-1">19h30 · 3h</div>
               </div>
             ))}
           </div>
