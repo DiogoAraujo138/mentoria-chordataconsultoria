@@ -127,6 +127,9 @@ const guestMentors: Mentor[] = [
       "• Formação em Educação Financeira",
     ],
   },
+];
+
+
 
 const getInitials = (name: string) =>
   name
