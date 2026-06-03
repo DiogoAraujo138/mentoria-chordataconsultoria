@@ -15,6 +15,7 @@ import thalesImg from "@/assets/mentores/thales.png";
 import elizImg from "@/assets/mentores/eliz.png";
 import mikaelImg from "@/assets/mentores/mikael.png";
 import diogoImg from "@/assets/mentores/diogo.png";
+import julianaHerrmannImg from "@/assets/mentores/juliana-herrmann.jpeg";
 
 type Mentor = {
   name: string;
