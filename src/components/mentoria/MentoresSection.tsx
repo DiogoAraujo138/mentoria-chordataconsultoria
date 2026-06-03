@@ -15,6 +15,7 @@ import thalesImg from "@/assets/mentores/thales.png";
 import elizImg from "@/assets/mentores/eliz.png";
 import mikaelImg from "@/assets/mentores/mikael.png";
 import diogoImg from "@/assets/mentores/diogo.png";
+import julianaHerrmannImg from "@/assets/mentores/juliana-herrmann.jpeg";
 
 type Mentor = {
   name: string;
@@ -109,7 +110,26 @@ const guestMentors: Mentor[] = [
       "• Magia do Mundo dos Negócios — Disney",
     ],
   },
+  {
+    name: "Juliana Herrmann",
+    role: "Contadora e Administradora",
+    image: julianaHerrmannImg,
+    shortBio:
+      "Contadora especializada no segmento veterinário, com atuação em gestão, finanças, planejamento tributário e desenvolvimento de clínicas e hospitais veterinários.",
+    fullBio: [
+      "Contadora e Administradora especializada no segmento veterinário, com atuação em gestão, finanças, planejamento tributário e desenvolvimento de clínicas e hospitais veterinários.",
+      "Formação:",
+      "• Bacharelado em Ciências Contábeis",
+      "• Bacharelado em Administração",
+      "• Especialização em Controladoria e Finanças",
+      "• Especialização em Gestão de Empresas Contábeis",
+      "• Especialização em Tributação para a Área da Saúde",
+      "• Formação em Educação Financeira",
+    ],
+  },
 ];
+
+
 
 const getInitials = (name: string) =>
   name
