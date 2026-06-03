@@ -1,4 +1,12 @@
-import { Users, User, UsersRound, ClipboardCheck, Clock } from "lucide-react";
+import { Users, User, UsersRound, ClipboardCheck, Clock, CalendarDays, Video } from "lucide-react";
+
+const encontros = [
+  { data: "02 de Junho", dia: "Terça-feira" },
+  { data: "09 de Junho", dia: "Terça-feira" },
+  { data: "16 de Junho", dia: "Terça-feira" },
+  { data: "23 de Junho", dia: "Terça-feira" },
+  { data: "30 de Junho", dia: "Terça-feira" },
+];
 
 const items = [
   {
