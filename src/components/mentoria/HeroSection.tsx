@@ -1,10 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CalendarDays } from "lucide-react";
+import { ArrowRight, CalendarDays, LogIn } from "lucide-react";
 import chordataLogo from "@/assets/logos/chordata-logo-white.png";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
+      {/* Fixed Portal do Aluno button */}
+      <a
+        href="https://chordata-mentor-hub.lovable.app/auth"
+        target="_blank"
+        rel="noopener"
+        className="fixed top-4 right-4 z-50 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 text-brand-teal text-sm font-medium hover:bg-brand-teal/20 transition-colors backdrop-blur-sm"
+      >
+        <LogIn className="w-4 h-4" />
+        Portal do Aluno
+      </a>
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-teal/8 rounded-full blur-[120px]" />
@@ -54,6 +64,19 @@ const HeroSection = () => {
             Saiba Mais
           </Button>
         </div>
+
+        {/* Discreet student portal link */}
+        <div className="pt-2">
+          <a
+            href="https://chordata-mentor-hub.lovable.app/auth"
+            target="_blank"
+            rel="noopener"
+            className="text-sm text-muted-foreground hover:text-brand-teal transition-colors"
+          >
+            Já é aluno? Entrar no portal →
+          </a>
+        </div>
+
 
         {/* Stats row */}
         <div className="flex flex-wrap justify-center gap-8 pt-8 text-sm text-muted-foreground">
