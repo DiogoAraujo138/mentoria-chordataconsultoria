@@ -65,6 +65,19 @@ const HeroSection = () => {
           </Button>
         </div>
 
+        {/* Discreet student portal link */}
+        <div className="pt-2">
+          <a
+            href="https://chordata-mentor-hub.lovable.app/auth"
+            target="_blank"
+            rel="noopener"
+            className="text-sm text-muted-foreground hover:text-brand-teal transition-colors"
+          >
+            Já é aluno? Entrar no portal →
+          </a>
+        </div>
+
+
         {/* Stats row */}
         <div className="flex flex-wrap justify-center gap-8 pt-8 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
