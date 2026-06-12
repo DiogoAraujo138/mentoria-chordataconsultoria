@@ -7,7 +7,7 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
       {/* Fixed Portal do Aluno button */}
       <a
-        href="https://chordata-mentor-hub.lovable.app/auth"
+        href="https://portalrp3.lovable.app"
         target="_blank"
         rel="noopener"
         className="fixed top-4 right-4 z-50 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 text-brand-teal text-sm font-medium hover:bg-brand-teal/20 transition-colors backdrop-blur-sm"
@@ -68,7 +68,7 @@ const HeroSection = () => {
         {/* Discreet student portal link */}
         <div className="pt-2">
           <a
-            href="https://chordata-mentor-hub.lovable.app/auth"
+            href="https://portalrp3.lovable.app"
             target="_blank"
             rel="noopener"
             className="text-sm text-muted-foreground hover:text-brand-teal transition-colors"
