@@ -28,11 +28,6 @@ const HeroSection = () => {
           <img src={chordataLogo} alt="Chordata Consultoria" className="h-20 md:h-28 lg:h-32 w-auto" />
         </div>
 
-        {/* Próxima turma badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 text-sm text-brand-teal font-medium">
-          <CalendarDays className="w-4 h-4" />
-          Próxima turma — Junho de 2026 · vagas limitadas
-        </div>
 
 
         {/* Headline */}
