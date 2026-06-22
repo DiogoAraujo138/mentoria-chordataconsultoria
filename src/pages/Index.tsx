@@ -40,6 +40,7 @@ const Index = () => {
       <MetodoRP3Section />
       <StructureSection />
       <ModulesSection />
+      <MarketingVeterinarioSection />
       <WhyChordataSection />
       <MentoresSection />
       <InvestmentSection />
