@@ -1,7 +1,6 @@
 import { Users, User, UsersRound, ClipboardCheck, Clock, CalendarDays, Video } from "lucide-react";
 
 const encontros = [
-  { data: "02 de Junho", dia: "Terça-feira" },
   { data: "09 de Junho", dia: "Terça-feira" },
   { data: "16 de Junho", dia: "Terça-feira" },
   { data: "23 de Junho", dia: "Terça-feira" },
@@ -91,7 +90,7 @@ const StructureSection = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {encontros.map((enc) => (
               <div
                 key={enc.data}
