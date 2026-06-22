@@ -95,7 +95,7 @@ const InvestmentSection = () => {
               </Button>
             </div>
 
-            <p className="text-xs text-muted-foreground/70 mt-5 text-center">
+            <p className="text-xs text-muted-foreground mt-5 text-center">
               Atendimento direto com o sócio-diretor da Chordata.
             </p>
           </div>
