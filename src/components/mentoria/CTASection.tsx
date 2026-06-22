@@ -65,7 +65,7 @@ const CTASection = () => {
       <div className="mt-24 pt-8 border-t border-border/50">
         <div className="flex flex-col items-center gap-4">
           <img src={chordataLogo} alt="Chordata Consultoria" className="h-8 w-auto opacity-50" />
-          <p className="text-sm text-muted-foreground/50">
+          <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Chordata Consultoria. Todos os direitos reservados.
           </p>
         </div>

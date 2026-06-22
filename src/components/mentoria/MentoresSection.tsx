@@ -343,7 +343,7 @@ const MentoresSection = () => {
               </Button>
             </div>
           ) : (
-            <p className="text-center text-sm text-muted-foreground/70 pt-2">
+            <p className="text-center text-sm text-muted-foreground pt-2">
               Novos mentores convidados serão anunciados em breve.
             </p>
           )}

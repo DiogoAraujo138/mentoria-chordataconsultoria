@@ -1,0 +1,15 @@
+# Mentoria RP3 — Chordata Consultoria
+
+> Mentoria em gestão para clínicas e hospitais veterinários baseada no Método RP3 (Processos, Pessoas e Planejamento), com turmas reduzidas, mentoria individual e diagnóstico gratuito.
+
+## Pages
+
+- [/](/): Página inicial da Mentoria RP3 — programa, método, módulos, mentores, investimento e inscrição.
+
+## Ecossistema Chordata
+
+- [Chordata Consultoria](https://chordataconsultoria.com/): Consultoria estratégica em gestão veterinária.
+- [Chordata Analytics](https://chordataanalytics.com.br/): Inteligência de dados e Power BI para clínicas e hospitais veterinários.
+- [MentAll.Vet](https://www.mentall.vet/): Saúde mental veterinária.
+- [JurídicoPet Digital](https://juridicopetdigital.com.br/): Assinatura eletrônica e conformidade jurídica digital.
+- [VetConnection](https://brasilfeiras.vet/): Feiras, congressos e eventos veterinários.

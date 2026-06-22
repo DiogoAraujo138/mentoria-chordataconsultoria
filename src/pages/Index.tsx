@@ -4,6 +4,7 @@ import BenefitsSection from "@/components/mentoria/BenefitsSection";
 import MetodoRP3Section from "@/components/mentoria/MetodoRP3Section";
 import StructureSection from "@/components/mentoria/StructureSection";
 import ModulesSection from "@/components/mentoria/ModulesSection";
+import MarketingVeterinarioSection from "@/components/mentoria/MarketingVeterinarioSection";
 import WhyChordataSection from "@/components/mentoria/WhyChordataSection";
 import MentoresSection from "@/components/mentoria/MentoresSection";
 import InvestmentSection from "@/components/mentoria/InvestmentSection";
@@ -39,6 +40,7 @@ const Index = () => {
       <MetodoRP3Section />
       <StructureSection />
       <ModulesSection />
+      <MarketingVeterinarioSection />
       <WhyChordataSection />
       <MentoresSection />
       <InvestmentSection />

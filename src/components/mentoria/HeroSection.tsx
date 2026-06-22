@@ -25,7 +25,14 @@ const HeroSection = () => {
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
         {/* Logo — destaque grande */}
         <div className="flex justify-center mb-6">
-          <img src={chordataLogo} alt="Chordata Consultoria" className="h-20 md:h-28 lg:h-32 w-auto" />
+          <img
+            src={chordataLogo}
+            alt="Chordata Consultoria"
+            className="h-20 md:h-28 lg:h-32 w-auto"
+            width={2481}
+            height={951}
+            fetchPriority="high"
+          />
         </div>
 
 
