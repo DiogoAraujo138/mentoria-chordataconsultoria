@@ -91,11 +91,12 @@ Deno.serve(async (req) => {
     // 2. Cria Checkout Session no Asaas
     const checkoutPayload: Record<string, unknown> = {
       billingTypes: ['PIX', 'CREDIT_CARD', 'BOLETO'],
-      chargeTypes: ['DETACHED'],
-      minutesToExpire: 60,
+      chargeTypes: parcelas > 1 ? ['DETACHED', 'INSTALLMENT'] : ['DETACHED'],
+      minutesToExpire: 1440,
       callback: {
         successUrl: `${successUrl}?insc=${inscricao.id}`,
         cancelUrl,
+        expiredUrl: cancelUrl,
       },
       items: [
         {
@@ -115,20 +116,22 @@ Deno.serve(async (req) => {
     };
 
     if (parcelas > 1) {
-      (checkoutPayload as any).installmentCount = parcelas;
+      (checkoutPayload as any).installment = { maxInstallmentCount: parcelas };
     }
 
-    const checkout = await asaas('/checkouts', {
+    const checkout = await asaas('/checkoutSession', {
       method: 'POST',
       body: JSON.stringify(checkoutPayload),
     });
 
-    const checkoutUrl = checkout?.link || checkout?.url || checkout?.checkoutUrl;
     const checkoutId = checkout?.id;
-    if (!checkoutUrl) {
-      console.error('Resposta Asaas sem URL:', checkout);
-      throw new Error('Asaas não retornou URL de checkout');
+    if (!checkoutId) {
+      console.error('Resposta Asaas sem id:', checkout);
+      throw new Error('Asaas não retornou o checkout');
     }
+
+    const baseUrl = ASAAS_ENV === 'production' ? 'https://asaas.com' : 'https://sandbox.asaas.com';
+    const checkoutUrl = `${baseUrl}/checkoutSession/show?id=${checkoutId}`;
 
     await supabase
       .from('inscricoes_rp3')
