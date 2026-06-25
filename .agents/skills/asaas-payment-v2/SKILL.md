@@ -1,5 +1,5 @@
 ---
-name: asaas-payment
+name: asaas-payment-v2
 description: >
   Integração completa com a API do Asaas para geração de cobranças, checkouts, links de pagamento e recebimento de vendas no Ecossistema Chordata. Use esta skill SEMPRE que o usuário mencionar: Asaas, cobrança, link de pagamento, checkout, ingresso, inscrição, mentoria, palestra, congresso, consultoria, recebimento via Pix/boleto/cartão, "criar página de pagamento", "gerar link de cobrança", "cobrar cliente". Cobre todo o fluxo: identificar empresa → selecionar conta Asaas correta → criar cliente → gerar cobrança/checkout/link → retornar URL de pagamento → confirmar via webhook. IMPORTANTE: cada empresa do ecossistema tem conta Asaas própria — a skill sempre identifica e confirma qual empresa está sendo trabalhada antes de gerar qualquer integração.
 ---
