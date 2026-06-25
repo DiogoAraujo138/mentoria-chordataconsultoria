@@ -14,7 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      inscricoes_rp3: {
+        Row: {
+          ambiente: string
+          asaas_checkout_id: string | null
+          asaas_customer_id: string | null
+          asaas_payment_id: string | null
+          checkout_url: string | null
+          cpf: string
+          created_at: string
+          email: string
+          forma_pagamento: string | null
+          id: string
+          nome: string
+          parcelas: number
+          raw_webhook: Json | null
+          status: string
+          telefone: string
+          updated_at: string
+          valor: number
+        }
+        Insert: {
+          ambiente?: string
+          asaas_checkout_id?: string | null
+          asaas_customer_id?: string | null
+          asaas_payment_id?: string | null
+          checkout_url?: string | null
+          cpf: string
+          created_at?: string
+          email: string
+          forma_pagamento?: string | null
+          id?: string
+          nome: string
+          parcelas?: number
+          raw_webhook?: Json | null
+          status?: string
+          telefone: string
+          updated_at?: string
+          valor: number
+        }
+        Update: {
+          ambiente?: string
+          asaas_checkout_id?: string | null
+          asaas_customer_id?: string | null
+          asaas_payment_id?: string | null
+          checkout_url?: string | null
+          cpf?: string
+          created_at?: string
+          email?: string
+          forma_pagamento?: string | null
+          id?: string
+          nome?: string
+          parcelas?: number
+          raw_webhook?: Json | null
+          status?: string
+          telefone?: string
+          updated_at?: string
+          valor?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
