@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      cupons_rp3: {
+        Row: {
+          ativo: boolean
+          codigo: string
+          created_at: string
+          expira_em: string | null
+          id: string
+          max_usos: number | null
+          observacao: string | null
+          percentual_desconto: number
+          updated_at: string
+          usos: number
+        }
+        Insert: {
+          ativo?: boolean
+          codigo: string
+          created_at?: string
+          expira_em?: string | null
+          id?: string
+          max_usos?: number | null
+          observacao?: string | null
+          percentual_desconto: number
+          updated_at?: string
+          usos?: number
+        }
+        Update: {
+          ativo?: boolean
+          codigo?: string
+          created_at?: string
+          expira_em?: string | null
+          id?: string
+          max_usos?: number | null
+          observacao?: string | null
+          percentual_desconto?: number
+          updated_at?: string
+          usos?: number
+        }
+        Relationships: []
+      }
       inscricoes_rp3: {
         Row: {
           ambiente: string
@@ -23,16 +62,19 @@ export type Database = {
           checkout_url: string | null
           cpf: string
           created_at: string
+          cupom_codigo: string | null
           email: string
           forma_pagamento: string | null
           id: string
           nome: string
           parcelas: number
+          percentual_desconto: number
           raw_webhook: Json | null
           status: string
           telefone: string
           updated_at: string
           valor: number
+          valor_original: number | null
         }
         Insert: {
           ambiente?: string
@@ -42,16 +84,19 @@ export type Database = {
           checkout_url?: string | null
           cpf: string
           created_at?: string
+          cupom_codigo?: string | null
           email: string
           forma_pagamento?: string | null
           id?: string
           nome: string
           parcelas?: number
+          percentual_desconto?: number
           raw_webhook?: Json | null
           status?: string
           telefone: string
           updated_at?: string
           valor: number
+          valor_original?: number | null
         }
         Update: {
           ambiente?: string
@@ -61,16 +106,19 @@ export type Database = {
           checkout_url?: string | null
           cpf?: string
           created_at?: string
+          cupom_codigo?: string | null
           email?: string
           forma_pagamento?: string | null
           id?: string
           nome?: string
           parcelas?: number
+          percentual_desconto?: number
           raw_webhook?: Json | null
           status?: string
           telefone?: string
           updated_at?: string
           valor?: number
+          valor_original?: number | null
         }
         Relationships: []
       }
