@@ -1,9 +1,12 @@
-const WHATSAPP_URL =
-  "https://wa.me/5551992358827?text=Ol%C3%A1!%20Quero%20participar%20da%20pr%C3%B3xima%20turma%20da%20Mentoria%20RP3%20(Junho%2F2026).%20Pode%20me%20enviar%20os%20pr%C3%B3ximos%20passos%3F";
+import { useState } from "react";
+import CheckoutModal from "./CheckoutModal";
 
 const HeroSection = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <section id="top" className="relative hero-gradient overflow-hidden">
+      <CheckoutModal open={open} onOpenChange={setOpen} />
       <div className="max-w-5xl mx-auto px-6 py-24 md:py-32 text-center">
         <span className="section-label">Mentoria RP3</span>
 
@@ -20,10 +23,10 @@ const HeroSection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
-            Quero participar desta turma
+          <button onClick={() => setOpen(true)} className="btn-primary">
+            Inscrever-me agora
             <span className="material-icons-round" style={{ fontSize: 18 }}>arrow_forward</span>
-          </a>
+          </button>
           <a href="#metodo" className="btn-outline-rp3">
             Como funciona o RP3
           </a>

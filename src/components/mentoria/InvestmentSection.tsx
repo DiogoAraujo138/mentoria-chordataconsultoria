@@ -1,8 +1,7 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check, CreditCard, MessageCircle, Sparkles, Tag } from "lucide-react";
-
-const WHATSAPP_URL =
-  "https://wa.me/5551992358827?text=Ol%C3%A1%20Mikael!%20Tenho%20interesse%20na%20Mentoria%20RP3%20%E2%80%94%20Gest%C3%A3o%20Cl%C3%ADnica%20e%20Hospitalar%20Veterin%C3%A1ria%20(turma%20Junho%2F2026).%20Pode%20me%20enviar%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20investimento%20e%20inscri%C3%A7%C3%A3o%3F";
+import { Check, CreditCard, Lock, Sparkles, Tag } from "lucide-react";
+import CheckoutModal from "./CheckoutModal";
 
 const includes = [
   "20h de treinamento ao vivo com a equipe Chordata",
@@ -14,8 +13,10 @@ const includes = [
 ];
 
 const InvestmentSection = () => {
+  const [open, setOpen] = useState(false);
   return (
     <section id="investimento" className="py-24 px-4 relative overflow-hidden">
+      <CheckoutModal open={open} onOpenChange={setOpen} />
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-brand-teal/8 rounded-full blur-[140px]" />
@@ -74,19 +75,17 @@ const InvestmentSection = () => {
 
             <div className="flex flex-col gap-3">
               <Button
-                asChild
+                onClick={() => setOpen(true)}
                 size="lg"
                 className="text-base px-6 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow"
               >
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2 w-5 h-5" />
-                  Quero garantir minha vaga
-                </a>
+                <Lock className="mr-2 w-5 h-5" />
+                Inscrever-me agora
               </Button>
             </div>
 
             <p className="text-xs text-muted-foreground mt-5 text-center">
-              Atendimento direto com a equipe da Chordata.
+              Pagamento seguro via Asaas · Pix, Boleto ou Cartão em até 6x sem juros.
             </p>
 
           </div>
