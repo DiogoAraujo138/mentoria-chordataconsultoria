@@ -91,7 +91,7 @@ Deno.serve(async (req) => {
     // 2. Cria Checkout no Asaas
     const checkoutPayload: Record<string, unknown> = {
       billingTypes: ['PIX', 'CREDIT_CARD'],
-      chargeTypes: parcelas > 1 ? ['INSTALLMENT'] : ['DETACHED'],
+      chargeTypes: parcelas > 1 ? ['DETACHED', 'INSTALLMENT'] : ['DETACHED'],
       minutesToExpire: 1440,
       callback: {
         successUrl: `${successUrl}?insc=${inscricao.id}`,
@@ -111,6 +111,10 @@ Deno.serve(async (req) => {
         email,
         cpfCnpj: cpf,
         phone: telefone,
+        address: 'Rua nao informada',
+        addressNumber: 0,
+        province: 'Centro',
+        postalCode: '90010000',
       },
       externalReference: inscricao.id,
     };
