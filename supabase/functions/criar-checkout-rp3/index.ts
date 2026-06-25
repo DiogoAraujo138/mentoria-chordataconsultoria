@@ -90,7 +90,7 @@ Deno.serve(async (req) => {
 
     // 2. Cria Checkout no Asaas
     const checkoutPayload: Record<string, unknown> = {
-      billingTypes: ['PIX', 'CREDIT_CARD'],
+      billingTypes: ['CREDIT_CARD'],
       chargeTypes: parcelas > 1 ? ['INSTALLMENT'] : ['DETACHED'],
       minutesToExpire: 1440,
       callback: {
