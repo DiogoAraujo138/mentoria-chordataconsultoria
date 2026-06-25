@@ -1,9 +1,12 @@
-const WHATSAPP_URL =
-  "https://wa.me/5551992358827?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20na%20Mentoria%20RP3%20(turma%20Junho%2F2026).%20Pode%20me%20enviar%20os%20pr%C3%B3ximos%20passos%3F";
+import { useState } from "react";
+import CheckoutModal from "./CheckoutModal";
 
 const CTASection = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
+      <CheckoutModal open={open} onOpenChange={setOpen} />
       <section
         id="cta-final"
         className="px-6 py-24 text-center"
@@ -26,13 +29,11 @@ const CTASection = () => {
           <h2 className="text-white mb-5">Vagas limitadas. A turma começa em junho.</h2>
           <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "1.0625rem", lineHeight: 1.75 }} className="mb-8">
             A mentoria funciona em grupos pequenos para garantir acompanhamento real. Quando
-            as vagas fecham, fecham. Fale com a gente para uma conversa sem compromisso.
+            as vagas fecham, fecham. Garanta sua inscrição com pagamento seguro.
           </p>
 
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => setOpen(true)}
             className="inline-flex items-center gap-2"
             style={{
               background: "#fff",
@@ -42,15 +43,16 @@ const CTASection = () => {
               fontSize: "1rem",
               padding: "14px 32px",
               borderRadius: "var(--radius-full)",
-              textDecoration: "none",
+              border: "none",
+              cursor: "pointer",
             }}
           >
-            Quero garantir minha vaga
+            Inscrever-me agora
             <span className="material-icons-round" style={{ fontSize: 18 }}>arrow_forward</span>
-          </a>
+          </button>
 
           <p className="mt-4" style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.875rem" }}>
-            Sem taxa de inscrição. Uma conversa antes de qualquer decisão.
+            Pix, Boleto ou Cartão em até 6x sem juros · Processado pelo Asaas.
           </p>
         </div>
       </section>
