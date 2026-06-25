@@ -111,6 +111,10 @@ Deno.serve(async (req) => {
         email,
         cpfCnpj: cpf,
         phone: telefone,
+        address: 'Nao informado',
+        addressNumber: 'S/N',
+        province: 'Centro',
+        postalCode: '90010000',
       },
       externalReference: inscricao.id,
     };
