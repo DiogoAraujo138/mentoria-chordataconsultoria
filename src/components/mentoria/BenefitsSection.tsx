@@ -1,64 +1,47 @@
-import { Network, GraduationCap, Percent, ClipboardCheck, FileText, Video } from "lucide-react";
-
-const benefits = [
+const deliverables = [
   {
-    icon: Network,
-    title: "Networking de Alto Impacto",
-    description: "Conecte-se com gestores do mercado veterinário e troque experiências reais.",
+    title: "Diagnóstico completo da sua clínica",
+    text: "Mapeamento de processos, equipe e finanças antes de começar. Você sabe onde está antes de planejar para onde vai.",
   },
   {
-    icon: GraduationCap,
-    title: "Especialistas em Gestão",
-    description: "Encontros conduzidos por consultores com experiência prática no setor.",
+    title: "Encontros ao vivo semanais",
+    text: "Sessões em grupo com foco em implementação. Não é aula: é trabalho feito junto, todas as terças de junho.",
   },
   {
-    icon: Percent,
-    title: "Descontos no Ecossistema",
-    description: "Acesso a condições exclusivas em ferramentas e serviços da Chordata.",
+    title: "Trilha de conteúdo estruturada",
+    text: "Material organizado por módulo, no ritmo da mentoria. Sem vídeo de quatro horas para assistir sozinho.",
   },
   {
-    icon: ClipboardCheck,
-    title: "Diagnóstico Gratuito",
-    description: "Receba um diagnóstico completo da sua empresa antes de começar a mentoria.",
+    title: "Comunidade de gestores veterinários",
+    text: "Acesso a uma rede de profissionais com os mesmos desafios. O que funciona em uma clínica chega na sua.",
   },
   {
-    icon: FileText,
-    title: "Materiais Facilitadores",
-    description: "Modelos prontos de POPs, fluxogramas e planilhas para aplicar imediatamente.",
+    title: "Suporte entre sessões",
+    text: "Canal direto para dúvidas durante a implementação. Porque os problemas reais não esperam o próximo encontro.",
   },
   {
-    icon: Video,
-    title: "Treinamentos Gravados",
-    description: "Acesso a conteúdos complementares gravados para revisitar quando quiser.",
+    title: "Plano de 90 dias personalizado",
+    text: "Sai da mentoria com prioridades definidas e ações mapeadas para o seu contexto.",
   },
 ];
 
 const BenefitsSection = () => {
   return (
-    <section className="py-24 px-4 section-gradient">
+    <section id="entregaveis" className="py-24 px-6" style={{ backgroundColor: "var(--slate-900)" }}>
       <div className="max-w-6xl mx-auto">
-        <div data-animate className="opacity-0 text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            O que você vai <span className="gradient-text">receber</span>
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Muito mais do que encontros: uma experiência completa para transformar sua gestão.
-          </p>
+        <div data-animate className="opacity-0 max-w-2xl mb-14">
+          <span className="section-label">Entregáveis</span>
+          <h2 className="text-white mb-4">O que está incluído na mentoria</h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {benefits.map((benefit, i) => (
-            <div
-              key={benefit.title}
-              data-animate
-              className="opacity-0 glass-card card-glow p-6 group"
-              style={{ animationDelay: `${i * 100}ms` }}
-            >
-              <div className="w-12 h-12 rounded-lg bg-brand-teal/10 flex items-center justify-center mb-4 group-hover:bg-brand-teal/20 transition-colors">
-                <benefit.icon className="w-6 h-6 text-brand-teal" />
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {deliverables.map((d, i) => (
+            <div key={d.title} data-animate className="opacity-0 card-dark" style={{ animationDelay: `${i * 80}ms` }}>
+              <div className="icon-circle mb-5">
+                <span className="material-icons-round">task_alt</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2">{benefit.title}</h3>
-              <p className="text-sm text-muted-foreground">{benefit.description}</p>
+              <h3 className="text-white mb-3">{d.title}</h3>
+              <p style={{ color: "var(--slate-400)", lineHeight: 1.75 }}>{d.text}</p>
             </div>
           ))}
         </div>
