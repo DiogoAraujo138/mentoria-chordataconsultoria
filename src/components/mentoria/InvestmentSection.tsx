@@ -83,21 +83,12 @@ const InvestmentSection = () => {
                   Quero garantir minha vaga
                 </a>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="text-base px-6 py-6 border-muted-foreground/20"
-              >
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                  Falar com Mikael no WhatsApp
-                </a>
-              </Button>
             </div>
 
             <p className="text-xs text-muted-foreground mt-5 text-center">
-              Atendimento direto com o sócio-diretor da Chordata.
+              Atendimento direto com a equipe da Chordata.
             </p>
+
           </div>
 
           {/* Lado direito: o que está incluso */}
