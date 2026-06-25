@@ -28,6 +28,7 @@ const Schema = z.object({
   parcelas: z.number().int().min(1).max(6).default(1),
   successUrl: z.string().url(),
   cancelUrl: z.string().url(),
+  cupom: z.string().trim().max(60).optional().nullable(),
 });
 
 const VALOR_TOTAL = 2300; // BRL
@@ -72,23 +73,62 @@ Deno.serve(async (req) => {
       );
     }
 
-    const { nome, email, cpf, telefone, parcelas, successUrl, cancelUrl } = parsed.data;
+    const { nome, email, cpf, telefone, parcelas, successUrl, cancelUrl, cupom } = parsed.data;
 
-    // 1. Insere inscrição pendente (gera id usado como externalReference)
+    // 0. Valida cupom (se informado)
+    let percentualDesconto = 0;
+    let cupomCodigo: string | null = null;
+    let cupomRow: any = null;
+    if (cupom && cupom.trim()) {
+      const codigo = cupom.trim().toUpperCase();
+      const { data: c, error: cErr } = await supabase
+        .from('cupons_rp3').select('*').eq('codigo', codigo).maybeSingle();
+      if (cErr) throw new Error(`DB cupom: ${cErr.message}`);
+      if (!c || !c.ativo) throw new Error('Cupom inválido.');
+      if (c.expira_em && new Date(c.expira_em).getTime() < Date.now()) throw new Error('Cupom expirado.');
+      if (c.max_usos != null && c.usos >= c.max_usos) throw new Error('Cupom esgotado.');
+      percentualDesconto = Number(c.percentual_desconto);
+      cupomCodigo = codigo;
+      cupomRow = c;
+    }
+
+    const valorFinal = Math.max(0, Math.round((VALOR_TOTAL * (1 - percentualDesconto / 100)) * 100) / 100);
+    const gratuito = valorFinal === 0;
+
+    // 1. Insere inscrição pendente
     const { data: inscricao, error: insErr } = await supabase
       .from('inscricoes_rp3')
       .insert({
         nome, email, cpf, telefone,
-        valor: VALOR_TOTAL,
-        parcelas,
-        status: 'PENDING',
+        valor: valorFinal,
+        valor_original: VALOR_TOTAL,
+        cupom_codigo: cupomCodigo,
+        percentual_desconto: percentualDesconto,
+        parcelas: gratuito ? 1 : parcelas,
+        status: gratuito ? 'PAID' : 'PENDING',
+        forma_pagamento: gratuito ? 'CUPOM_100' : null,
         ambiente: ASAAS_ENV,
       })
       .select()
       .single();
     if (insErr) throw new Error(`DB insert: ${insErr.message}`);
 
-    // 2. Cria Checkout no Asaas
+    // Incrementa uso do cupom
+    if (cupomRow) {
+      await supabase.from('cupons_rp3')
+        .update({ usos: (cupomRow.usos ?? 0) + 1 })
+        .eq('id', cupomRow.id);
+    }
+
+    // 2a. Cupom 100% → pula Asaas, vai direto pro obrigado
+    if (gratuito) {
+      return new Response(
+        JSON.stringify({ checkoutUrl: `${successUrl}?insc=${inscricao.id}&free=1`, inscricaoId: inscricao.id, gratuito: true }),
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      );
+    }
+
+    // 2b. Cria Checkout no Asaas com valor já com desconto
     const checkoutPayload: Record<string, unknown> = {
       billingTypes: ['PIX', 'CREDIT_CARD'],
       chargeTypes: parcelas > 1 ? ['DETACHED', 'INSTALLMENT'] : ['DETACHED'],
@@ -100,10 +140,10 @@ Deno.serve(async (req) => {
       },
       items: [
         {
-          name: 'Mentoria RP3',
+          name: 'Mentoria RP3' + (cupomCodigo ? ` (cupom ${cupomCodigo})` : ''),
           description: 'Mentoria RP3 — Gestao Clinica e Hospitalar Veterinaria (Turma Jun/2026)',
           quantity: 1,
-          value: VALOR_TOTAL,
+          value: valorFinal,
         },
       ],
       customerData: {
