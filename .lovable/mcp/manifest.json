@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.0",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "mentoria-rp3-mcp",
+      "version": "0.1.0",
+      "title": "Mentoria RP3 — Chordata"
+    },
+    "tools": [
+      {
+        "name": "get_program_info",
+        "title": "Informações da Mentoria RP3",
+        "description": "Retorna informações institucionais do programa Mentoria RP3: método, público-alvo, turma vigente, formato, valor e link de inscrição.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "validate_coupon",
+        "title": "Validar cupom de desconto",
+        "description": "Valida um código de cupom da Mentoria RP3 e retorna se está ativo, o percentual de desconto e o valor final da inscrição.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "codigo": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60,
+              "description": "Código do cupom (ex: TESTE100)"
+            }
+          },
+          "required": [
+            "codigo"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
