@@ -1,11 +1,4 @@
-import { Users, User, UsersRound, ClipboardCheck, Clock, CalendarDays, Video } from "lucide-react";
-
-const encontros = [
-  { data: "09 de Junho", dia: "Terça-feira" },
-  { data: "16 de Junho", dia: "Terça-feira" },
-  { data: "23 de Junho", dia: "Terça-feira" },
-  { data: "30 de Junho", dia: "Terça-feira" },
-];
+import { Users, User, UsersRound, ClipboardCheck, Clock } from "lucide-react";
 
 const items = [
   {
@@ -69,39 +62,6 @@ const StructureSection = () => {
               <p className="text-sm text-muted-foreground">{item.description}</p>
             </div>
           ))}
-        </div>
-
-        {/* Datas dos encontros */}
-        <div data-animate className="opacity-0 mt-16 glass-card card-glow p-8 md:p-10">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 text-sm text-brand-teal font-medium mb-4">
-              <CalendarDays className="w-4 h-4" />
-              Datas dos Encontros
-            </div>
-            <h3 className="text-2xl md:text-3xl font-bold mb-3">
-              Todas as <span className="gradient-text">terças-feiras de Junho/2026</span>
-            </h3>
-            <p className="text-muted-foreground flex items-center justify-center gap-2 flex-wrap">
-              <Clock className="w-4 h-4 text-brand-teal" />
-              <span>às 19h30 · 3h de duração</span>
-              <span className="text-muted-foreground">·</span>
-              <Video className="w-4 h-4 text-brand-teal" />
-              <span>Encontros online ao vivo</span>
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {encontros.map((enc) => (
-              <div
-                key={enc.data}
-                className="rounded-xl border border-border/50 bg-background/30 p-4 text-center hover:border-brand-teal/40 transition-colors"
-              >
-                <div className="text-xs text-muted-foreground mb-1">{enc.dia}</div>
-                <div className="text-lg font-bold text-foreground">{enc.data}</div>
-                <div className="text-sm text-brand-teal font-medium mt-1">19h30 · 3h</div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

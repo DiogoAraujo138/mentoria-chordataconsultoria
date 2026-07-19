@@ -1,59 +1,84 @@
-# Adicionar seção "Mentores" na Landing Page
 
-## Objetivo
-Criar nova seção apresentando os mentores da Mentoria RP3 — equipe Chordata + parceiros convidados, com Mariana Brino em destaque inicial e os demais colapsados em "Ver mais".
+## Escopo confirmado
 
-## Estrutura da seção
+1. **Checkout Asaas** — PIX + Cartão até 6x, produção (`ASAASOFICIAL`)
+2. **Rotação automática** do mês da turma
+3. **Mentores** — Chordata em destaque grande, convidados em faixa compacta
+4. **Remover** bloco "Datas dos Encontros"
+5. **Webhook Chatwoot** — cria contato/conversa a cada pagamento confirmado
 
-Nova seção `MentoresSection.tsx`, posicionada **entre `WhyChordataSection` e `CTASection`** no `Index.tsx`.
+Tabela `inscricoes_rp3` já existe com todos os campos necessários (incluindo cupons). Vou aproveitá-la.
 
-Layout:
-- Título: "Quem vai te mentorar"
-- Subtítulo curto sobre a equipe Chordata + convidados
-- **Grid principal (visível)**: 5 cards — Thales, Mikael, Diogo, Eliz (equipe Chordata) + Mariana Brino (convidada, com badge "Convidada")
-- Botão **"Ver mais mentores"** que expande/colapsa cards adicionais (inicialmente vazio, preparado para futuras adições)
+---
 
-## Card de mentor
+## 1. Asaas — checkout
 
-Cada card contém:
-- Foto circular (placeholder por enquanto — você enviará as imagens depois)
-- Nome
-- Cargo / título profissional curto
-- Badge opcional: "Equipe Chordata" ou "Convidada"
-- Bio resumida (2-4 linhas)
-- Botão "Ver mais" → abre Dialog com bio completa, formação, experiência
+**Edge function `create-asaas-checkout`** (pública, sem JWT):
+- Body: `{ nome, email, cpf, telefone, cupomCodigo? }`
+- Valida Zod, sanitiza CPF/telefone
+- Se cupom: valida em `cupons_rp3` (ativo, não expirado, dentro de `max_usos`) e aplica `percentual_desconto`
+- Cria/reutiliza customer no Asaas (`GET /v3/customers?cpfCnpj=` → senão `POST /v3/customers`)
+- Cria checkout `POST /v3/checkouts` com:
+  - `billingTypes: ["PIX","CREDIT_CARD"]`, `chargeTypes: ["DETACHED","INSTALLMENT"]`
+  - `value` (com desconto), `maxInstallments: 6`, `dueDateLimitDays: 3`
+  - `callback.successUrl` e `cancelUrl` na LP
+  - `externalReference: inscricao_id`
+- Insere linha em `inscricoes_rp3` (status `PENDING`, guarda `checkout_url`, `asaas_customer_id`, `asaas_checkout_id`, valor original e desconto)
+- Retorna `{ checkoutUrl }` → frontend faz `window.location`
+- Usa `ASAAS_ENV` para escolher base URL (`api.asaas.com` vs `sandbox`)
 
-## Conteúdo dos mentores (rascunho aprovado pelo usuário)
+**Edge function `asaas-webhook`** (pública):
+- Valida header `asaas-access-token` === `ASAAS_WEBHOOK_TOKEN`
+- Atualiza `inscricoes_rp3` por `asaas_payment_id`/`asaas_checkout_id`: status, forma_pagamento, parcelas, `raw_webhook`
+- Em `PAYMENT_CONFIRMED`/`PAYMENT_RECEIVED`: incrementa `cupons_rp3.usos` se houver cupom e dispara **Chatwoot** (item 5)
 
-**Mariana Brino** — Convidada
-Médica Veterinária. Especializada em Clínica de Pequenos Animais e Gestão de Clínicas e Hospitais Veterinários.
-Formação: ULBRA, EQUALIS, MBA FAMESP, Pós MBA Mercado Pet FAMESP.
-Cursos: Intensivet, Harvard Business Publishing, Disney.
+**Frontend — `CheckoutModal.tsx`**:
+- Dialog acionado por todos os CTAs de "vagas abertas" (Hero, Investimento, CTA final)
+- Form shadcn: Nome, E-mail, CPF, Telefone, Cupom (opcional)
+- Loading state → redireciona pro `checkoutUrl` Asaas
+- Whats continua como botão secundário "Tirar dúvidas"
 
-**Mikael Nunes Cattani** — Equipe Chordata
-Administrador. MBA Consultoria Empresarial e MBA Gestão de Clínicas e Hospitais Veterinários. 12 anos no mercado veterinário. Sócio/Diretor Chordata, cofundador Feira Vet Connection, Mentall.vet e DescomplicaVet.
+## 2. Rotação automática da turma
 
-**Diogo Araujo** — Equipe Chordata
-Consultor & Analista de Dados. Gestão Financeira + Pós em Análise de Dados. 3 anos no mercado vet. Cria dashboards, automações e inteligência operacional para clínicas/hospitais.
+`src/lib/turma.ts`:
+```ts
+getProximaTurma() → { mes, ano, slug, inicioISO, fimISO, tercas: Date[] }
+```
+- Calcula sempre "mês corrente + 1"
+- Encontra 4 primeiras terças do mês retornado
+- Consumida por Hero, CTA, Investimento, Structure, SEO (Helmet no `Index`)
+- SEO JSON-LD `Course.startDate` recebe `inicioISO` dinâmico
+- `index.html` fica com título atemporal; Helmet sobrescreve por render
 
-**Eliz Modena** — Equipe Chordata
-Psicóloga (CRP 07/40461). Pós em Gestão de Pessoas. +10 anos em RH e Psicologia Organizacional. Consultora Chordata, Psicóloga Org. Mentall.Vet. Facilitadora de treinamentos e desenvolvimento de equipes.
+## 3. Mentores — novo layout
 
-**Thales** — Equipe Chordata
-*(faltam dados — usarei placeholder "Em breve" até você enviar bio)*
+Reescrever `MentoresSection.tsx`:
+- **Consultores Chordata** (destaque): grid 2 colunas com cards grandes, foto retrato 320px, bio completa aberta, borda `brand-teal` + glow forte. Ordem: Mikael, Thales, Eliz, Diogo.
+- **Convidados**: título menor "Também participam da mentoria", faixa horizontal com cards compactos (foto 72px + nome + credencial curta) e `Dialog` "Ver bio". Mariana Brino e Juliana Herrmann.
 
-## Detalhes técnicos
+## 4. Remover datas dos encontros
 
-- Componente: `src/components/mentoria/MentoresSection.tsx`
-- Dialog do shadcn para bio completa
-- Estrutura de dados: array `mentors` tipado para facilitar adicionar novos parceiros depois
-- Imagens: placeholder cinza com iniciais até você enviar fotos; estrutura preparada para `import` de `src/assets/mentores/`
-- Cores: `brand-teal`/`brand-blue` já existentes, sem cor nova
-- Responsivo: 1 col mobile, 2 cols tablet, 3 cols desktop
-- Animação fade-up via observer já existente
+Deletar o bloco "Datas dos Encontros" (~linhas 68-100) de `StructureSection.tsx`. Mantém apenas o grid de 5 cards.
 
-## Pendências para você
+## 5. Webhook Chatwoot
 
-1. Foto de cada mentor (Thales, Mikael, Diogo, Eliz, Mariana)
-2. Bio do Thales
-3. Confirmar ordem dos cards
+Dentro de `asaas-webhook`, no evento de pagamento confirmado, POST para:
+- `https://chordata-chatwoot.kk28lc.easypanel.host/api/v1/accounts/1/contacts` (upsert por email/telefone)
+- `.../conversations` criando conversa com mensagem inicial contendo: nome, email, telefone, valor pago, forma de pagamento, turma, ID Asaas
+
+Salvo credenciais como secrets:
+- `CHATWOOT_URL` = `https://chordata-chatwoot.kk28lc.easypanel.host`
+- `CHATWOOT_ACCOUNT_ID` = `1`
+- `CHATWOOT_API_TOKEN` = `u3GAWzphXoVfimz5oebS7Ai5`
+- Vou pedir também `CHATWOOT_INBOX_ID` (obrigatório na API de conversas) — se não souber, listo suas inboxes via API e escolhemos.
+
+Erros do Chatwoot não bloqueiam o webhook (log + segue 200 pro Asaas).
+
+---
+
+## Pós-deploy (só ação sua)
+
+No painel Asaas → Integrações → Webhooks:
+- URL: `https://dqmoftaemhpaynxlaidd.supabase.co/functions/v1/asaas-webhook`
+- Token: mesmo valor de `ASAAS_WEBHOOK_TOKEN`
+- Eventos: `PAYMENT_CREATED`, `PAYMENT_CONFIRMED`, `PAYMENT_RECEIVED`, `PAYMENT_OVERDUE`, `PAYMENT_REFUNDED`

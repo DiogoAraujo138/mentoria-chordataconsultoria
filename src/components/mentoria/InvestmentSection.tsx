@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Check, CreditCard, MessageCircle, Sparkles, Tag } from "lucide-react";
+import CheckoutModal from "./CheckoutModal";
+import { getProximaTurma } from "@/lib/turma";
 
-const WHATSAPP_URL =
-  "https://wa.me/5551992358827?text=Ol%C3%A1%20Mikael!%20Tenho%20interesse%20na%20Mentoria%20RP3%20%E2%80%94%20Gest%C3%A3o%20Cl%C3%ADnica%20e%20Hospitalar%20Veterin%C3%A1ria%20(turma%20Junho%2F2026).%20Pode%20me%20enviar%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20investimento%20e%20inscri%C3%A7%C3%A3o%3F";
+const WHATSAPP_URL = (turma: string) =>
+  `https://wa.me/5551992358827?text=${encodeURIComponent(
+    `Olá Mikael! Tenho interesse na Mentoria RP3 — Gestão Clínica e Hospitalar Veterinária (turma ${turma}). Pode me enviar mais informações sobre o investimento e inscrição?`,
+  )}`;
 
 const includes = [
   "20h de treinamento ao vivo com a equipe Chordata",
@@ -14,6 +18,7 @@ const includes = [
 ];
 
 const InvestmentSection = () => {
+  const turma = getProximaTurma();
   return (
     <section id="investimento" className="py-24 px-4 relative overflow-hidden">
       {/* Background glow */}
@@ -50,7 +55,7 @@ const InvestmentSection = () => {
           <div className="relative p-8 md:p-12 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-border/50">
             <div className="inline-flex items-center gap-2 self-start px-3 py-1.5 rounded-full bg-brand-blue/10 text-xs text-brand-blue font-semibold mb-6">
               <Sparkles className="w-3.5 h-3.5" />
-              Turma Junho/2026 · vagas limitadas
+              Turma {turma.label} · vagas limitadas
             </div>
 
             <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">
@@ -73,30 +78,32 @@ const InvestmentSection = () => {
             </p>
 
             <div className="flex flex-col gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="text-base px-6 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow"
-              >
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2 w-5 h-5" />
-                  Quero garantir minha vaga
-                </a>
-              </Button>
+              <CheckoutModal
+                trigger={
+                  <Button
+                    size="lg"
+                    className="text-base px-6 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground animate-pulse-glow"
+                  >
+                    <CreditCard className="mr-2 w-5 h-5" />
+                    Quero garantir minha vaga
+                  </Button>
+                }
+              />
               <Button
                 asChild
                 variant="outline"
                 size="lg"
                 className="text-base px-6 py-6 border-muted-foreground/20"
               >
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                <a href={WHATSAPP_URL(turma.label)} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2 w-5 h-5" />
                   Falar com Mikael no WhatsApp
                 </a>
               </Button>
             </div>
 
             <p className="text-xs text-muted-foreground mt-5 text-center">
-              Atendimento direto com o sócio-diretor da Chordata.
+              Pagamento seguro via Asaas · PIX ou cartão em até 6x sem juros
             </p>
           </div>
 
