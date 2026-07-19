@@ -1,12 +1,13 @@
 import { useEffect, useRef } from "react";
-import Header from "@/components/mentoria/Header";
 import HeroSection from "@/components/mentoria/HeroSection";
-import MetodoRP3Section from "@/components/mentoria/MetodoRP3Section";
-import AudienceSection from "@/components/mentoria/AudienceSection";
 import BenefitsSection from "@/components/mentoria/BenefitsSection";
+import MetodoRP3Section from "@/components/mentoria/MetodoRP3Section";
+import StructureSection from "@/components/mentoria/StructureSection";
+import ModulesSection from "@/components/mentoria/ModulesSection";
+import MarketingVeterinarioSection from "@/components/mentoria/MarketingVeterinarioSection";
+import WhyChordataSection from "@/components/mentoria/WhyChordataSection";
 import MentoresSection from "@/components/mentoria/MentoresSection";
 import InvestmentSection from "@/components/mentoria/InvestmentSection";
-import WhyChordataSection from "@/components/mentoria/WhyChordataSection";
 import CTASection from "@/components/mentoria/CTASection";
 
 const Index = () => {
@@ -33,15 +34,16 @@ const Index = () => {
   }, []);
 
   return (
-    <div ref={sectionsRef} className="min-h-screen overflow-x-hidden" style={{ backgroundColor: "var(--slate-900)" }}>
-      <Header />
+    <div ref={sectionsRef} className="min-h-screen bg-background overflow-x-hidden">
       <HeroSection />
-      <MetodoRP3Section />
-      <AudienceSection />
       <BenefitsSection />
+      <MetodoRP3Section />
+      <StructureSection />
+      <ModulesSection />
+      <MarketingVeterinarioSection />
+      <WhyChordataSection />
       <MentoresSection />
       <InvestmentSection />
-      <WhyChordataSection />
       <CTASection />
     </div>
   );

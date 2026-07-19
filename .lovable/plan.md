@@ -1,108 +1,59 @@
+# Adicionar seção "Mentores" na Landing Page
 
-# Plano — Pagamento direto na Landing RP3 via Asaas
+## Objetivo
+Criar nova seção apresentando os mentores da Mentoria RP3 — equipe Chordata + parceiros convidados, com Mariana Brino em destaque inicial e os demais colapsados em "Ver mais".
 
-Empresa: **Chordata Consultoria**. Produto: Mentoria RP3 — R$ 2.300 à vista ou 6x R$ 383,33 sem juros.
+## Estrutura da seção
 
-## Estratégia em 2 fases
+Nova seção `MentoresSection.tsx`, posicionada **entre `WhyChordataSection` e `CTASection`** no `Index.tsx`.
 
-**Fase 1 — Sandbox** (validar fluxo ponta-a-ponta sem dinheiro real)
-**Fase 2 — Produção** (apenas trocar a API Key e a base URL, sem re-trabalho)
+Layout:
+- Título: "Quem vai te mentorar"
+- Subtítulo curto sobre a equipe Chordata + convidados
+- **Grid principal (visível)**: 5 cards — Thales, Mikael, Diogo, Eliz (equipe Chordata) + Mariana Brino (convidada, com badge "Convidada")
+- Botão **"Ver mais mentores"** que expande/colapsa cards adicionais (inicialmente vazio, preparado para futuras adições)
 
-O código fica preparado para alternar com uma variável `ASAAS_ENV=sandbox|production`.
+## Card de mentor
 
----
+Cada card contém:
+- Foto circular (placeholder por enquanto — você enviará as imagens depois)
+- Nome
+- Cargo / título profissional curto
+- Badge opcional: "Equipe Chordata" ou "Convidada"
+- Bio resumida (2-4 linhas)
+- Botão "Ver mais" → abre Dialog com bio completa, formação, experiência
 
-## O que muda na landing page
+## Conteúdo dos mentores (rascunho aprovado pelo usuário)
 
-Substituir o botão atual "Próxima turma — vagas abertas" da seção Investimento por um **modal de checkout** com 3 passos curtos:
+**Mariana Brino** — Convidada
+Médica Veterinária. Especializada em Clínica de Pequenos Animais e Gestão de Clínicas e Hospitais Veterinários.
+Formação: ULBRA, EQUALIS, MBA FAMESP, Pós MBA Mercado Pet FAMESP.
+Cursos: Intensivet, Harvard Business Publishing, Disney.
 
-1. **Dados** — Nome, Email, CPF, Telefone (campos obrigatórios pelo Asaas)
-2. **Forma de pagamento** — Pix, Cartão até 6x sem juros, ou Boleto
-3. **Redireciona** para a página segura do Asaas para concluir o pagamento
+**Mikael Nunes Cattani** — Equipe Chordata
+Administrador. MBA Consultoria Empresarial e MBA Gestão de Clínicas e Hospitais Veterinários. 12 anos no mercado veterinário. Sócio/Diretor Chordata, cofundador Feira Vet Connection, Mentall.vet e DescomplicaVet.
 
-Após o pagamento, o aluno volta para `/obrigado` com confirmação visual.
+**Diogo Araujo** — Equipe Chordata
+Consultor & Analista de Dados. Gestão Financeira + Pós em Análise de Dados. 3 anos no mercado vet. Cria dashboards, automações e inteligência operacional para clínicas/hospitais.
 
-Os CTAs do Hero e do CTA final passam a abrir o mesmo modal (em vez de WhatsApp).
-O botão "Falar com Mikael" continua existindo como alternativa.
+**Eliz Modena** — Equipe Chordata
+Psicóloga (CRP 07/40461). Pós em Gestão de Pessoas. +10 anos em RH e Psicologia Organizacional. Consultora Chordata, Psicóloga Org. Mentall.Vet. Facilitadora de treinamentos e desenvolvimento de equipes.
 
----
+**Thales** — Equipe Chordata
+*(faltam dados — usarei placeholder "Em breve" até você enviar bio)*
 
-## Backend (Lovable Cloud)
+## Detalhes técnicos
 
-### 1. Tabela `inscricoes_rp3`
-Armazena cada tentativa/inscrição:
-- `id`, `created_at`
-- `nome`, `email`, `cpf`, `telefone`
-- `asaas_customer_id`, `asaas_payment_id`, `asaas_checkout_id`
-- `valor`, `parcelas`, `forma_pagamento`
-- `status` (`PENDING` | `CONFIRMED` | `OVERDUE` | `REFUNDED`)
-- `ambiente` (`sandbox` | `production`)
-- RLS: só `service_role` lê/escreve (apenas as edge functions acessam).
+- Componente: `src/components/mentoria/MentoresSection.tsx`
+- Dialog do shadcn para bio completa
+- Estrutura de dados: array `mentors` tipado para facilitar adicionar novos parceiros depois
+- Imagens: placeholder cinza com iniciais até você enviar fotos; estrutura preparada para `import` de `src/assets/mentores/`
+- Cores: `brand-teal`/`brand-blue` já existentes, sem cor nova
+- Responsivo: 1 col mobile, 2 cols tablet, 3 cols desktop
+- Animação fade-up via observer já existente
 
-### 2. Edge function `criar-checkout-rp3`
-- Recebe dados do formulário, valida com Zod.
-- Cria/recupera customer no Asaas.
-- Cria Checkout Session com `chargeTypes: [DETACHED]`, `billingTypes: [PIX, CREDIT_CARD, BOLETO]`, `installmentCount: 6`.
-- Insere linha PENDING em `inscricoes_rp3` com `externalReference` = id da linha.
-- Retorna a URL do checkout do Asaas para o frontend redirecionar.
+## Pendências para você
 
-### 3. Edge function `asaas-webhook` (pública, sem JWT)
-- Recebe eventos `PAYMENT_CONFIRMED`, `PAYMENT_RECEIVED`, `PAYMENT_OVERDUE`, `PAYMENT_REFUNDED`.
-- Valida o token de webhook (header `asaas-access-token`).
-- Atualiza o status da inscrição correspondente pelo `externalReference`.
-
-### 4. Página `/obrigado`
-- Lê `?payment=<id>` da URL.
-- Mostra mensagem de obrigado + próximos passos (próxima turma Junho/2026, encontros às terças 19:30, contato do Mikael para dúvidas).
-
----
-
-## O que preciso de você
-
-Para começar a Fase 1 (sandbox):
-
-1. **API Key Sandbox da Chordata Consultoria**
-   Painel Asaas → Modo Sandbox → Integrações → "Gerar nova chave de API". Eu vou pedir via secret seguro (você cola na caixa que aparece, não no chat).
-
-2. **URL do webhook** — eu te entrego depois que a edge function estiver no ar. Você cola no painel Asaas Sandbox → Integrações → Webhooks, com os 4 eventos acima e um token (qualquer string aleatória; também salvo como secret).
-
-Para a Fase 2 (produção), depois dos testes ok, repetimos os 2 passos acima com a API Key e o webhook da conta de produção.
-
----
-
-## Detalhes técnicos (referência)
-
-- **Secrets:** `ASAAS_API_KEY_CHORDATA_SANDBOX`, `ASAAS_API_KEY_CHORDATA_PROD`, `ASAAS_WEBHOOK_TOKEN`, `ASAAS_ENV`.
-- **Base URLs:** `https://sandbox.asaas.com/api/v3` vs `https://api.asaas.com/v3` — selecionado pela `ASAAS_ENV`.
-- **Header:** `access_token: $API_KEY`.
-- **Checkout Session payload (resumo):**
-  ```
-  {
-    chargeTypes: ["DETACHED"],
-    billingTypes: ["PIX","CREDIT_CARD","BOLETO"],
-    items: [{ name: "Mentoria RP3", value: 2300, quantity: 1 }],
-    installmentCount: 6,
-    customerData: { name, email, cpfCnpj, phone },
-    callback: {
-      successUrl: "https://mentoria-rp3.lovable.app/obrigado",
-      cancelUrl:  "https://mentoria-rp3.lovable.app/#investimento"
-    },
-    externalReference: "<id da inscricao>"
-  }
-  ```
-- **Validação:** CPF normalizado (só dígitos), email/telefone validados via Zod, erros retornados ao modal.
-- **Idempotência:** se o usuário reenviar o form, reaproveitamos a inscrição PENDING dele (mesmo email + ambiente nas últimas 24h).
-
----
-
-## Sequência de execução
-
-1. Habilitar Lovable Cloud (se ainda não estiver).
-2. Criar tabela `inscricoes_rp3` + RLS.
-3. Salvar secrets (sandbox).
-4. Criar as 2 edge functions.
-5. Trocar CTAs da landing pelo modal de checkout + criar `/obrigado`.
-6. Você cadastra o webhook no painel sandbox → testamos um Pix de R$ 5 (alterando o valor temporariamente).
-7. Validado tudo → trocamos `ASAAS_ENV` para `production`, cadastramos secrets de produção e webhook de produção.
-
-Pronto pra seguir? Se aprovar, no próximo passo já habilito o Cloud e peço a API Key sandbox.
+1. Foto de cada mentor (Thales, Mikael, Diogo, Eliz, Mariana)
+2. Bio do Thales
+3. Confirmar ordem dos cards
