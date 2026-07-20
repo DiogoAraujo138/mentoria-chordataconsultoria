@@ -69,6 +69,7 @@ const CheckoutModal = ({ trigger }: Props) => {
         },
       });
 
+      if (data?.error) throw new Error(data.error);
       if (error) throw new Error(error.message);
       if (!data?.checkoutUrl) throw new Error("Checkout indisponível no momento.");
 

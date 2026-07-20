@@ -1,4 +1,5 @@
-import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
+import { corsHeaders } from "../_shared/cors.ts";
+import { asaasFetch, getAsaasConfig, MAX_INSTALLMENTS, PRICE } from "../_shared/asaas.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { z } from "npm:zod@3";
 
@@ -11,57 +12,30 @@ const BodySchema = z.object({
   turma: z.string().min(3).max(40).optional(),
 });
 
-const ASAAS_ENV = (Deno.env.get("ASAAS_ENV") ?? "production").toLowerCase();
-const ASAAS_BASE =
-  ASAAS_ENV === "sandbox"
-    ? "https://api-sandbox.asaas.com/v3"
-    : "https://api.asaas.com/v3";
-const ASAAS_KEY =
-  ASAAS_ENV === "sandbox"
-    ? Deno.env.get("ASAAS_API_KEY_CHORDATA_SANDBOX")
-    : Deno.env.get("ASAASOFICIAL");
+type AsaasCustomer = { id: string };
 
-const PRICE = 2300;
-const MAX_INSTALLMENTS = 6;
+type AsaasListResponse<T> = { data?: T[] };
 
-async function asaas(path: string, init: RequestInit = {}) {
-  const res = await fetch(`${ASAAS_BASE}${path}`, {
-    ...init,
-    headers: {
-      "Content-Type": "application/json",
-      access_token: ASAAS_KEY ?? "",
-      ...(init.headers ?? {}),
-    },
-  });
-  const text = await res.text();
-  let body: any = null;
-  try {
-    body = text ? JSON.parse(text) : null;
-  } catch {
-    body = text;
-  }
-  if (!res.ok) {
-    console.error(`Asaas ${path} failed [${res.status}]:`, body);
-    throw new Error(
-      `Asaas ${res.status}: ${
-        typeof body === "object"
-          ? body?.errors?.[0]?.description ?? JSON.stringify(body)
-          : body
-      }`,
-    );
-  }
-  return body;
-}
+type AsaasCheckout = {
+  id?: string;
+  link?: string;
+  checkoutUrl?: string;
+  url?: string;
+};
 
 async function findOrCreateCustomer(input: {
   nome: string;
   email: string;
   cpf: string;
   telefone: string;
-}) {
-  const list = await asaas(`/customers?cpfCnpj=${input.cpf}`, { method: "GET" });
+}): Promise<AsaasCustomer> {
+  const list = (await asaasFetch(`/customers?cpfCnpj=${input.cpf}`, {
+    method: "GET",
+  })) as AsaasListResponse<AsaasCustomer>;
+
   if (list?.data?.length) return list.data[0];
-  return await asaas(`/customers`, {
+
+  return (await asaasFetch(`/customers`, {
     method: "POST",
     body: JSON.stringify({
       name: input.nome,
@@ -70,7 +44,7 @@ async function findOrCreateCustomer(input: {
       mobilePhone: input.telefone,
       notificationDisabled: false,
     }),
-  });
+  })) as AsaasCustomer;
 }
 
 Deno.serve(async (req) => {
@@ -79,6 +53,7 @@ Deno.serve(async (req) => {
   }
 
   try {
+    const { env: ASAAS_ENV, key: ASAAS_KEY } = getAsaasConfig();
     if (!ASAAS_KEY) {
       throw new Error("Configuração Asaas ausente (chave API).");
     }
@@ -100,7 +75,6 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
     );
 
-    // Cupom (opcional)
     let percentualDesconto = 0;
     let cupomCodigoValido: string | null = null;
     if (input.cupomCodigo) {
@@ -133,10 +107,8 @@ Deno.serve(async (req) => {
       (PRICE * (1 - percentualDesconto / 100)).toFixed(2),
     );
 
-    // Cliente Asaas
     const customer = await findOrCreateCustomer(input);
 
-    // Registro pendente
     const origin =
       req.headers.get("origin") ?? "https://mentoria-rp3.lovable.app";
     const turmaSlug = input.turma ?? "atual";
@@ -162,44 +134,59 @@ Deno.serve(async (req) => {
 
     if (insErr) throw insErr;
 
-    // Checkout Asaas
-    const checkout = await asaas(`/checkouts`, {
-      method: "POST",
-      body: JSON.stringify({
-        billingTypes: ["PIX", "CREDIT_CARD"],
-        chargeTypes: ["DETACHED", "INSTALLMENT"],
-        minutesToExpire: 60,
-        callback: {
-          successUrl: `${origin}/?pagamento=sucesso`,
-          cancelUrl: `${origin}/?pagamento=cancelado`,
-        },
-        items: [
-          {
-            name: `Mentoria RP3 — Turma ${turmaSlug}`,
-            description:
-              "Gestão Clínica e Hospitalar Veterinária · Método RP3 da Chordata Consultoria",
-            quantity: 1,
-            value: valorFinal,
+    let checkout: AsaasCheckout;
+    try {
+      checkout = (await asaasFetch(`/checkouts`, {
+        method: "POST",
+        body: JSON.stringify({
+          billingTypes: ["PIX", "CREDIT_CARD"],
+          chargeTypes: ["DETACHED", "INSTALLMENT"],
+          minutesToExpire: 60,
+          callback: {
+            successUrl: `${origin}/?pagamento=sucesso`,
+            cancelUrl: `${origin}/?pagamento=cancelado`,
+            expiredUrl: `${origin}/?pagamento=expirado`,
           },
-        ],
-        customerData: {
-          name: input.nome,
-          cpfCnpj: input.cpf,
-          email: input.email,
-          phone: input.telefone,
-        },
-        installments: {
-          maxInstallmentCount: MAX_INSTALLMENTS,
-        },
-        externalReference: inscricao.id,
-      }),
-    });
+          items: [
+            {
+              name: `Mentoria RP3 — Turma ${turmaSlug}`,
+              description:
+                "Gestão Clínica e Hospitalar Veterinária · Método RP3 da Chordata Consultoria",
+              quantity: 1,
+              value: valorFinal,
+            },
+          ],
+          customerData: {
+            name: input.nome,
+            cpfCnpj: input.cpf,
+            email: input.email,
+            phone: input.telefone,
+            mobilePhone: input.telefone,
+          },
+          // Asaas exige o objeto singular `installment` quando INSTALLMENT está em chargeTypes
+          installment: {
+            maxInstallmentCount: MAX_INSTALLMENTS,
+          },
+          externalReference: inscricao.id,
+        }),
+      })) as AsaasCheckout;
+    } catch (checkoutErr) {
+      await supabase
+        .from("inscricoes_rp3")
+        .update({ status: "CHECKOUT_FAILED" })
+        .eq("id", inscricao.id);
+      throw checkoutErr;
+    }
 
-    const checkoutUrl: string =
+    const checkoutUrl: string | undefined =
       checkout?.link ?? checkout?.checkoutUrl ?? checkout?.url;
     const checkoutId: string | undefined = checkout?.id;
 
     if (!checkoutUrl) {
+      await supabase
+        .from("inscricoes_rp3")
+        .update({ status: "CHECKOUT_FAILED" })
+        .eq("id", inscricao.id);
       throw new Error("Asaas não retornou URL de checkout.");
     }
 
@@ -222,10 +209,11 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       },
     );
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Erro interno";
     console.error("create-asaas-checkout error:", err);
     return new Response(
-      JSON.stringify({ error: err?.message ?? "Erro interno" }),
+      JSON.stringify({ error: message }),
       {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },

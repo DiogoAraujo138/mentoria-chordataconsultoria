@@ -3,11 +3,7 @@ import { ArrowRight, MessageCircle, CalendarDays } from "lucide-react";
 import chordataLogo from "@/assets/logos/chordata-logo-white.png";
 import CheckoutModal from "./CheckoutModal";
 import { getProximaTurma } from "@/lib/turma";
-
-const WHATSAPP_DUVIDAS = (turma: string) =>
-  `https://wa.me/5551992358827?text=${encodeURIComponent(
-    `Olá! Gostaria de mais informações sobre a Mentoria RP3 (turma ${turma}) e como funciona o processo de inscrição.`,
-  )}`;
+import { whatsappDuvidasUrl } from "@/lib/contact";
 
 const CTASection = () => {
   const turma = getProximaTurma();
@@ -49,7 +45,7 @@ const CTASection = () => {
               size="lg"
               className="text-base px-8 py-6 border-muted-foreground/20"
             >
-              <a href={WHATSAPP_DUVIDAS(turma.label)} target="_blank" rel="noopener noreferrer">
+              <a href={whatsappDuvidasUrl(turma.label)} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-2 w-5 h-5" />
                 Tirar Dúvidas no WhatsApp
               </a>
