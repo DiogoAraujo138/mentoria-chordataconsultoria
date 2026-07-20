@@ -203,48 +203,63 @@ const TeamCard = ({ mentor }: { mentor: Mentor }) => (
   </div>
 );
 
-/* ---------- Card: Convidados (compacto, discreto) ---------- */
-const GuestChip = ({ mentor }: { mentor: Mentor }) => (
-  <Dialog>
-    <DialogTrigger asChild>
-      <button
-        type="button"
-        className="group flex items-center gap-3 p-3 pr-4 rounded-full bg-card border border-border/60 hover:border-brand-blue/40 transition-colors text-left"
-      >
-        <div className="w-11 h-11 rounded-full overflow-hidden bg-muted border border-brand-blue/20 shrink-0">
-          {mentor.image ? (
-            <img
-              src={mentor.image}
-              alt={mentor.name}
-              className="w-full h-full object-cover object-top"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-xs font-bold text-muted-foreground">
-              {getInitials(mentor.name)}
-            </div>
-          )}
+/* ---------- Card: Convidados (médio — menor que o time, mas visível) ---------- */
+const GuestCard = ({ mentor }: { mentor: Mentor }) => (
+  <div
+    className="group flex flex-col items-center text-center p-5 rounded-2xl bg-card/60 border border-border/60 hover:border-brand-blue/40 hover:bg-card transition-all duration-300 hover:-translate-y-0.5"
+    data-animate
+  >
+    <div className="w-20 h-20 rounded-full overflow-hidden bg-muted border-2 border-brand-blue/25 mb-3">
+      {mentor.image ? (
+        <img
+          src={mentor.image}
+          alt={mentor.name}
+          className="w-full h-full object-cover object-top"
+        />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center text-sm font-bold text-muted-foreground">
+          {getInitials(mentor.name)}
         </div>
-        <div className="min-w-0">
-          <p className="text-sm font-semibold leading-tight truncate">{mentor.name}</p>
-          <p className="text-[11px] text-muted-foreground leading-tight truncate">
-            {mentor.role}
-          </p>
+      )}
+    </div>
+
+    <Badge
+      variant="outline"
+      className="mb-2 border-brand-blue/30 text-brand-blue text-[9px] uppercase tracking-wider"
+    >
+      Convidado
+    </Badge>
+    <h4 className="text-sm font-bold leading-tight">{mentor.name}</h4>
+    <p className="text-[11px] text-brand-blue mt-1 leading-snug">{mentor.role}</p>
+    <p className="text-xs text-muted-foreground leading-relaxed mt-3 mb-4 line-clamp-3">
+      {mentor.shortBio}
+    </p>
+
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="mt-auto text-brand-blue hover:bg-brand-blue/10 hover:text-brand-blue text-xs h-8"
+        >
+          Ver perfil
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-lg">
+        <DialogHeader>
+          <DialogTitle>{mentor.name}</DialogTitle>
+          <DialogDescription>{mentor.role}</DialogDescription>
+        </DialogHeader>
+        <div className="space-y-2 text-sm text-muted-foreground leading-relaxed">
+          {mentor.fullBio.map((line, i) => (
+            <p key={i}>{line}</p>
+          ))}
         </div>
-      </button>
-    </DialogTrigger>
-    <DialogContent className="max-w-lg">
-      <DialogHeader>
-        <DialogTitle>{mentor.name}</DialogTitle>
-        <DialogDescription>{mentor.role}</DialogDescription>
-      </DialogHeader>
-      <div className="space-y-2 text-sm text-muted-foreground leading-relaxed">
-        {mentor.fullBio.map((line, i) => (
-          <p key={i}>{line}</p>
-        ))}
-      </div>
-    </DialogContent>
-  </Dialog>
+      </DialogContent>
+    </Dialog>
+  </div>
 );
+
 
 const MentoresSection = () => {
   return (
