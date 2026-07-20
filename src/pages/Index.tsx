@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { toast } from "sonner";
 import HeroSection from "@/components/mentoria/HeroSection";
 import BenefitsSection from "@/components/mentoria/BenefitsSection";
 import MetodoRP3Section from "@/components/mentoria/MetodoRP3Section";
@@ -12,6 +13,23 @@ import CTASection from "@/components/mentoria/CTASection";
 
 const Index = () => {
   const sectionsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const pagamento = params.get("pagamento");
+    if (pagamento === "sucesso") {
+      toast.success("Pagamento recebido! Em breve a equipe Chordata entra em contato.");
+    } else if (pagamento === "cancelado") {
+      toast.message("Pagamento cancelado. Você pode tentar novamente quando quiser.");
+    } else if (pagamento === "expirado") {
+      toast.message("O link de pagamento expirou. Abra novamente o formulário de inscrição.");
+    }
+    if (pagamento) {
+      params.delete("pagamento");
+      const next = `${window.location.pathname}${params.toString() ? `?${params}` : ""}${window.location.hash}`;
+      window.history.replaceState({}, "", next);
+    }
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

@@ -1,5 +1,7 @@
 import { Megaphone, Target, TrendingUp, Users, MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getProximaTurma } from "@/lib/turma";
+import { whatsappVagaUrl } from "@/lib/contact";
 
 const strategies = [
   {
@@ -28,10 +30,8 @@ const strategies = [
   },
 ];
 
-const WHATSAPP_URL =
-  "https://wa.me/5551992358827?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20na%20Mentoria%20RP3%20%E2%80%94%20Gest%C3%A3o%20Cl%C3%ADnica%20e%20Hospitalar%20Veterin%C3%A1ria%20(turma%20de%20Junho%2F2026).%20Pode%20me%20enviar%20os%20pr%C3%B3ximos%20passos%20para%20inscri%C3%A7%C3%A3o%3F";
-
 const MarketingVeterinarioSection = () => {
+  const turma = getProximaTurma();
   return (
     <section className="py-24 px-4 section-gradient">
       <div className="max-w-6xl mx-auto">
@@ -77,7 +77,7 @@ const MarketingVeterinarioSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="text-base px-8 py-6 bg-brand-teal hover:bg-brand-teal/90 text-primary-foreground">
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              <a href={whatsappVagaUrl(turma.label)} target="_blank" rel="noopener noreferrer">
                 Quero aplicar na minha clínica
                 <ArrowRight className="ml-2 w-5 h-5" />
               </a>

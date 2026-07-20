@@ -2,11 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Check, CreditCard, MessageCircle, Sparkles, Tag } from "lucide-react";
 import CheckoutModal from "./CheckoutModal";
 import { getProximaTurma } from "@/lib/turma";
-
-const WHATSAPP_URL = (turma: string) =>
-  `https://wa.me/5551992358827?text=${encodeURIComponent(
-    `Olá Mikael! Tenho interesse na Mentoria RP3 — Gestão Clínica e Hospitalar Veterinária (turma ${turma}). Pode me enviar mais informações sobre o investimento e inscrição?`,
-  )}`;
+import { whatsappInteresseUrl } from "@/lib/contact";
 
 const includes = [
   "20h de treinamento ao vivo com a equipe Chordata",
@@ -95,9 +91,9 @@ const InvestmentSection = () => {
                 size="lg"
                 className="text-base px-6 py-6 border-muted-foreground/20"
               >
-                <a href={WHATSAPP_URL(turma.label)} target="_blank" rel="noopener noreferrer">
+                <a href={whatsappInteresseUrl(turma.label)} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 w-5 h-5" />
-                  Falar com Mikael no WhatsApp
+                  Falar no WhatsApp
                 </a>
               </Button>
             </div>

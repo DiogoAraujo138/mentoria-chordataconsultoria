@@ -1,1 +1,9 @@
 project_id = "dqmoftaemhpaynxlaidd"
+
+# Webhooks externos (Asaas) não enviam JWT do Supabase.
+[functions.asaas-webhook]
+verify_jwt = false
+
+# Checkout público da landing (auth via anon key no invoke do client).
+[functions.create-asaas-checkout]
+verify_jwt = false
