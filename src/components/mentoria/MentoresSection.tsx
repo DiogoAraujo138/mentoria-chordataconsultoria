@@ -318,11 +318,12 @@ const MentoresSection = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
             {guestMentors.map((m) => (
-              <GuestChip key={m.name} mentor={m} />
+              <GuestCard key={m.name} mentor={m} />
             ))}
           </div>
+
         </div>
       </div>
     </section>
