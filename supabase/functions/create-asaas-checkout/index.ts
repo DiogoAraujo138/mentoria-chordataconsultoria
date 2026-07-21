@@ -8,6 +8,7 @@ const BodySchema = z.object({
   email: z.string().email().max(150),
   cpf: z.string().regex(/^\d{11}$/, "CPF deve ter 11 dígitos"),
   telefone: z.string().regex(/^\d{10,11}$/, "Telefone inválido"),
+  cep: z.string().regex(/^\d{8}$/, "CEP deve ter 8 dígitos"),
   cupomCodigo: z.string().trim().min(1).max(40).optional(),
   turma: z.string().min(3).max(40).optional(),
 });
