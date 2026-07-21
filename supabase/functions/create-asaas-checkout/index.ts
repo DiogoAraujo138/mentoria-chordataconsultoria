@@ -132,6 +132,9 @@ Deno.serve(async (req) => {
             email: input.email,
             phone: input.telefone,
             mobilePhone: input.telefone,
+            postalCode: input.cep,
+            address: "A informar",
+            addressNumber: "S/N",
           },
           // Asaas exige o objeto singular `installment` quando INSTALLMENT está em chargeTypes
           installment: {
