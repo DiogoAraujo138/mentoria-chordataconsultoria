@@ -317,24 +317,29 @@ const MentoresSection = () => {
           </div>
         </div>
 
-        {/* Convidados — compacto */}
-        <div className="space-y-6 pt-4">
-          <div className="text-center" data-animate>
-            <p className="text-[11px] uppercase tracking-[0.25em] text-muted-foreground font-medium mb-2 inline-flex items-center gap-1.5">
-              <Sparkles className="w-3 h-3 text-brand-blue" />
-              Convidados especiais da turma
-            </p>
-            <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-              Profissionais parceiros que somam experiências complementares ao Método RP3.
-            </p>
+        {/* Convidados — mesmo tamanho, identidade azul */}
+        <div className="space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4" data-animate>
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-brand-blue font-semibold mb-2 inline-flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                Convidados Especiais
+              </p>
+              <h3 className="text-2xl md:text-3xl font-bold">
+                Parceiros que somam ao Método RP3
+              </h3>
+              <p className="text-sm text-muted-foreground mt-2 max-w-xl">
+                Profissionais convidados que trazem experiências complementares para a turma.
+              </p>
+            </div>
+            <div className="hidden sm:block h-px flex-1 max-w-xs bg-gradient-to-r from-brand-blue/40 to-transparent ml-6 mb-3" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {guestMentors.map((m) => (
               <GuestCard key={m.name} mentor={m} />
             ))}
           </div>
-
         </div>
       </div>
     </section>
