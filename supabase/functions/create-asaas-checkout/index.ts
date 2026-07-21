@@ -135,6 +135,8 @@ Deno.serve(async (req) => {
             postalCode: input.cep,
             address: "A informar",
             addressNumber: "S/N",
+            province: "A informar",
+            complement: "",
           },
           // Asaas exige o objeto singular `installment` quando INSTALLMENT está em chargeTypes
           installment: {
