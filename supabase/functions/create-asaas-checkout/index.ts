@@ -12,40 +12,12 @@ const BodySchema = z.object({
   turma: z.string().min(3).max(40).optional(),
 });
 
-type AsaasCustomer = { id: string };
-
-type AsaasListResponse<T> = { data?: T[] };
-
 type AsaasCheckout = {
   id?: string;
   link?: string;
   checkoutUrl?: string;
   url?: string;
 };
-
-async function findOrCreateCustomer(input: {
-  nome: string;
-  email: string;
-  cpf: string;
-  telefone: string;
-}): Promise<AsaasCustomer> {
-  const list = (await asaasFetch(`/customers?cpfCnpj=${input.cpf}`, {
-    method: "GET",
-  })) as AsaasListResponse<AsaasCustomer>;
-
-  if (list?.data?.length) return list.data[0];
-
-  return (await asaasFetch(`/customers`, {
-    method: "POST",
-    body: JSON.stringify({
-      name: input.nome,
-      email: input.email,
-      cpfCnpj: input.cpf,
-      mobilePhone: input.telefone,
-      notificationDisabled: false,
-    }),
-  })) as AsaasCustomer;
-}
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
