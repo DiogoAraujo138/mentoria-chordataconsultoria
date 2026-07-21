@@ -36,6 +36,13 @@ function maskPhone(v: string) {
     .replace(/(\d{5})(\d)/, "$1-$2");
 }
 
+function maskCEP(v: string) {
+  return v
+    .replace(/\D/g, "")
+    .slice(0, 8)
+    .replace(/(\d{5})(\d)/, "$1-$2");
+}
+
 const CheckoutModal = ({ trigger }: Props) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
