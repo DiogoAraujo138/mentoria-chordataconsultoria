@@ -59,7 +59,7 @@ const CheckoutModal = ({ trigger }: Props) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.nome || !form.email || !form.cpf || !form.telefone) {
+    if (!form.nome || !form.email || !form.cpf || !form.telefone || !form.cep) {
       toast.error("Preencha todos os campos obrigatórios.");
       return;
     }
@@ -72,6 +72,7 @@ const CheckoutModal = ({ trigger }: Props) => {
           email: form.email.trim(),
           cpf: form.cpf.replace(/\D/g, ""),
           telefone: form.telefone.replace(/\D/g, ""),
+          cep: form.cep.replace(/\D/g, ""),
           cupomCodigo: form.cupom.trim() || undefined,
           turma: turma.slug,
         },
