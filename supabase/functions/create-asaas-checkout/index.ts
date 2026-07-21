@@ -79,8 +79,6 @@ Deno.serve(async (req) => {
       (PRICE * (1 - percentualDesconto / 100)).toFixed(2),
     );
 
-    const customer = await findOrCreateCustomer(input);
-
     const origin =
       req.headers.get("origin") ?? "https://mentoria-rp3.lovable.app";
     const turmaSlug = input.turma ?? "atual";
@@ -99,7 +97,6 @@ Deno.serve(async (req) => {
         ambiente: ASAAS_ENV,
         cupom_codigo: cupomCodigoValido,
         percentual_desconto: percentualDesconto,
-        asaas_customer_id: customer.id,
       })
       .select("id")
       .single();
