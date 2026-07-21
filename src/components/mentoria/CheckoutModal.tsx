@@ -51,6 +51,7 @@ const CheckoutModal = ({ trigger }: Props) => {
     email: "",
     cpf: "",
     telefone: "",
+    cep: "",
     cupom: "",
   });
 
