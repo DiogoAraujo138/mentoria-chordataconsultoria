@@ -150,6 +150,18 @@ const CheckoutModal = ({ trigger }: Props) => {
             </div>
           </div>
           <div className="space-y-1.5">
+            <Label htmlFor="cep">CEP *</Label>
+            <Input
+              id="cep"
+              required
+              inputMode="numeric"
+              value={form.cep}
+              onChange={(e) => setForm({ ...form, cep: maskCEP(e.target.value) })}
+              disabled={loading}
+              placeholder="00000-000"
+            />
+          </div>
+          <div className="space-y-1.5">
             <Label htmlFor="cupom">Cupom de desconto (opcional)</Label>
             <Input
               id="cupom"
