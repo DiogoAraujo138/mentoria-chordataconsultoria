@@ -203,46 +203,57 @@ const TeamCard = ({ mentor }: { mentor: Mentor }) => (
   </div>
 );
 
-/* ---------- Card: Convidados (médio — menor que o time, mas visível) ---------- */
+/* ---------- Card: Convidados (mesmo tamanho, identidade azul) ---------- */
 const GuestCard = ({ mentor }: { mentor: Mentor }) => (
   <div
-    className="group flex flex-col items-center text-center p-5 rounded-2xl bg-card/60 border border-border/60 hover:border-brand-blue/40 hover:bg-card transition-all duration-300 hover:-translate-y-0.5"
+    className="group relative flex flex-col p-6 md:p-7 rounded-3xl bg-gradient-to-br from-card via-card to-brand-blue/5 border border-brand-blue/25 hover:border-brand-blue/60 transition-all duration-300 hover:shadow-[0_20px_60px_-20px_hsl(var(--brand-blue)/0.45)] hover:-translate-y-1 overflow-hidden"
     data-animate
   >
-    <div className="w-20 h-20 rounded-full overflow-hidden bg-muted border-2 border-brand-blue/25 mb-3">
-      {mentor.image ? (
-        <img
-          src={mentor.image}
-          alt={mentor.name}
-          className="w-full h-full object-cover object-top"
-        />
-      ) : (
-        <div className="w-full h-full flex items-center justify-center text-sm font-bold text-muted-foreground">
-          {getInitials(mentor.name)}
+    <div className="absolute -top-20 -right-20 w-56 h-56 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+
+    <div className="relative flex items-start gap-4 mb-5">
+      <div className="relative shrink-0">
+        <div className="absolute -inset-1 bg-gradient-to-br from-brand-blue/40 to-brand-teal/20 rounded-2xl blur-md opacity-70" />
+        <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-muted border-2 border-brand-blue/30">
+          {mentor.image ? (
+            <img
+              src={mentor.image}
+              alt={mentor.name}
+              className="w-full h-full object-cover object-top"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-2xl font-bold text-muted-foreground">
+              {getInitials(mentor.name)}
+            </div>
+          )}
         </div>
-      )}
+      </div>
+
+      <div className="flex-1 min-w-0 pt-1">
+        <Badge
+          variant="outline"
+          className="mb-2 border-brand-blue/40 text-brand-blue gap-1 text-[10px] uppercase tracking-wider"
+        >
+          <Sparkles className="w-3 h-3" />
+          Convidado Especial
+        </Badge>
+        <h3 className="text-lg font-bold leading-tight">{mentor.name}</h3>
+        <p className="text-xs text-brand-blue mt-1 leading-snug">{mentor.role}</p>
+      </div>
     </div>
 
-    <Badge
-      variant="outline"
-      className="mb-2 border-brand-blue/30 text-brand-blue text-[9px] uppercase tracking-wider"
-    >
-      Convidado
-    </Badge>
-    <h4 className="text-sm font-bold leading-tight">{mentor.name}</h4>
-    <p className="text-[11px] text-brand-blue mt-1 leading-snug">{mentor.role}</p>
-    <p className="text-xs text-muted-foreground leading-relaxed mt-3 mb-4 line-clamp-3">
+    <p className="relative text-sm text-muted-foreground leading-relaxed flex-1 mb-5">
       {mentor.shortBio}
     </p>
 
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          variant="ghost"
+          variant="outline"
           size="sm"
-          className="mt-auto text-brand-blue hover:bg-brand-blue/10 hover:text-brand-blue text-xs h-8"
+          className="relative self-start border-brand-blue/40 text-brand-blue hover:bg-brand-blue/10 hover:text-brand-blue"
         >
-          Ver perfil
+          Ver perfil completo
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-lg">
@@ -306,24 +317,29 @@ const MentoresSection = () => {
           </div>
         </div>
 
-        {/* Convidados — compacto */}
-        <div className="space-y-6 pt-4">
-          <div className="text-center" data-animate>
-            <p className="text-[11px] uppercase tracking-[0.25em] text-muted-foreground font-medium mb-2 inline-flex items-center gap-1.5">
-              <Sparkles className="w-3 h-3 text-brand-blue" />
-              Convidados especiais da turma
-            </p>
-            <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-              Profissionais parceiros que somam experiências complementares ao Método RP3.
-            </p>
+        {/* Convidados — mesmo tamanho, identidade azul */}
+        <div className="space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4" data-animate>
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-brand-blue font-semibold mb-2 inline-flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                Convidados Especiais
+              </p>
+              <h3 className="text-2xl md:text-3xl font-bold">
+                Parceiros que somam ao Método RP3
+              </h3>
+              <p className="text-sm text-muted-foreground mt-2 max-w-xl">
+                Profissionais convidados que trazem experiências complementares para a turma.
+              </p>
+            </div>
+            <div className="hidden sm:block h-px flex-1 max-w-xs bg-gradient-to-r from-brand-blue/40 to-transparent ml-6 mb-3" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {guestMentors.map((m) => (
               <GuestCard key={m.name} mentor={m} />
             ))}
           </div>
-
         </div>
       </div>
     </section>

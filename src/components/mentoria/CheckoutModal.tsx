@@ -36,6 +36,13 @@ function maskPhone(v: string) {
     .replace(/(\d{5})(\d)/, "$1-$2");
 }
 
+function maskCEP(v: string) {
+  return v
+    .replace(/\D/g, "")
+    .slice(0, 8)
+    .replace(/(\d{5})(\d)/, "$1-$2");
+}
+
 const CheckoutModal = ({ trigger }: Props) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -44,6 +51,7 @@ const CheckoutModal = ({ trigger }: Props) => {
     email: "",
     cpf: "",
     telefone: "",
+    cep: "",
     cupom: "",
   });
 
@@ -51,7 +59,7 @@ const CheckoutModal = ({ trigger }: Props) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.nome || !form.email || !form.cpf || !form.telefone) {
+    if (!form.nome || !form.email || !form.cpf || !form.telefone || !form.cep) {
       toast.error("Preencha todos os campos obrigatórios.");
       return;
     }
@@ -64,6 +72,7 @@ const CheckoutModal = ({ trigger }: Props) => {
           email: form.email.trim(),
           cpf: form.cpf.replace(/\D/g, ""),
           telefone: form.telefone.replace(/\D/g, ""),
+          cep: form.cep.replace(/\D/g, ""),
           cupomCodigo: form.cupom.trim() || undefined,
           turma: turma.slug,
         },
@@ -139,6 +148,18 @@ const CheckoutModal = ({ trigger }: Props) => {
                 placeholder="(00) 00000-0000"
               />
             </div>
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="cep">CEP *</Label>
+            <Input
+              id="cep"
+              required
+              inputMode="numeric"
+              value={form.cep}
+              onChange={(e) => setForm({ ...form, cep: maskCEP(e.target.value) })}
+              disabled={loading}
+              placeholder="00000-000"
+            />
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="cupom">Cupom de desconto (opcional)</Label>

@@ -8,13 +8,10 @@ const BodySchema = z.object({
   email: z.string().email().max(150),
   cpf: z.string().regex(/^\d{11}$/, "CPF deve ter 11 dígitos"),
   telefone: z.string().regex(/^\d{10,11}$/, "Telefone inválido"),
+  cep: z.string().regex(/^\d{8}$/, "CEP deve ter 8 dígitos"),
   cupomCodigo: z.string().trim().min(1).max(40).optional(),
   turma: z.string().min(3).max(40).optional(),
 });
-
-type AsaasCustomer = { id: string };
-
-type AsaasListResponse<T> = { data?: T[] };
 
 type AsaasCheckout = {
   id?: string;
@@ -22,30 +19,6 @@ type AsaasCheckout = {
   checkoutUrl?: string;
   url?: string;
 };
-
-async function findOrCreateCustomer(input: {
-  nome: string;
-  email: string;
-  cpf: string;
-  telefone: string;
-}): Promise<AsaasCustomer> {
-  const list = (await asaasFetch(`/customers?cpfCnpj=${input.cpf}`, {
-    method: "GET",
-  })) as AsaasListResponse<AsaasCustomer>;
-
-  if (list?.data?.length) return list.data[0];
-
-  return (await asaasFetch(`/customers`, {
-    method: "POST",
-    body: JSON.stringify({
-      name: input.nome,
-      email: input.email,
-      cpfCnpj: input.cpf,
-      mobilePhone: input.telefone,
-      notificationDisabled: false,
-    }),
-  })) as AsaasCustomer;
-}
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -107,8 +80,6 @@ Deno.serve(async (req) => {
       (PRICE * (1 - percentualDesconto / 100)).toFixed(2),
     );
 
-    const customer = await findOrCreateCustomer(input);
-
     const origin =
       req.headers.get("origin") ?? "https://mentoria-rp3.lovable.app";
     const turmaSlug = input.turma ?? "atual";
@@ -127,7 +98,6 @@ Deno.serve(async (req) => {
         ambiente: ASAAS_ENV,
         cupom_codigo: cupomCodigoValido,
         percentual_desconto: percentualDesconto,
-        asaas_customer_id: customer.id,
       })
       .select("id")
       .single();
@@ -162,6 +132,11 @@ Deno.serve(async (req) => {
             email: input.email,
             phone: input.telefone,
             mobilePhone: input.telefone,
+            postalCode: input.cep,
+            address: "A informar",
+            addressNumber: "S/N",
+            province: "A informar",
+            complement: "",
           },
           // Asaas exige o objeto singular `installment` quando INSTALLMENT está em chargeTypes
           installment: {
